@@ -497,61 +497,71 @@ Work Process Style
     /* ==========================================================================
 Fun Facts Style
 ========================================================================== */
-#fun-facts {
+#category {
   background: #24242a;
   padding: 60px 0;
   text-align: center;
 }
-#fun-facts .col-lg-3 {
+#category .col-lg-3 {
   margin-top: 40px;
   margin-bottom: 20px;
 }
-#fun-facts h2 {
+#category h2 {
   text-transform: uppercase;
   color: #fff;
 }
-#fun-facts p {
+#category p {
   color: #fff;
 }
-#fun-facts h4 {
+#category h4 {
   text-transform: uppercase;
   color: #fff;
 }
-#fun-facts .number {
+#category a {
+  color: #fff;
+}
+#category a:hover{
+  color: #a3a3a3;
+}
+#category .number {
   color: #fff;
   font-weight: 700;
   padding: 10px 0;
   margin: 0;
 }
-#fun-facts span {
+#category span {
   font-size: 48px;
   color: #fff;
   margin-bottom: 15px;
 }
 
     /* ==========================================================================
-Our Team Style
+My blog Style
 ========================================================================== */
-#team {
+#blog {
   padding: 60px 0;
   text-align: center;
 }
-#team h2 {
+#blog h2 {
   text-transform: uppercase;
 }
-#team .team {
+#blog .item {
   margin-top: 40px;
   margin-bottom: 20px;
 }
-#team .team h4 {
+#blog .item h4 {
+  overflow: hidden;
   margin-top: 20px;
   text-transform: uppercase;
   font-weight: 700;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
 }
-#team .team p {
+#blog .item p {
   color: #a3a3a3;
 }
-#team .team a {
+#blog .item a {
   color: #0d0d0d;
   font-size: 22px;
   padding-right: 10px;
@@ -560,9 +570,99 @@ Our Team Style
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-#team .team a:hover,
-#team .team a:focus,
-#team .team a:active {
+#blog .item a:hover,
+#blog .item a:focus,
+#blog .item a:active {
+  color: #a3a3a3;
+}
+
+/* ==========================================================================
+My work Style
+========================================================================== */
+#work {
+  background: #24242a;
+  padding: 60px 0;
+  text-align: center;
+}
+#work h2 {
+  text-transform: uppercase;
+  color: #fff;
+}
+#work p{
+  color: #fff;
+}
+#work .sep{
+  border: 2px solid #fff;
+}
+#work .item {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+#work .item h4 {
+  overflow: hidden;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}
+#work .item p {
+  color: #a3a3a3;
+}
+#work .item a {
+  color: #fff;
+  font-size: 22px;
+  padding-right: 10px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+#work .item a:hover,
+#work .item a:focus,
+#work .item a:active {
+  color: #a3a3a3;
+}
+
+/* ==========================================================================
+My story Style
+========================================================================== */
+#story {
+  padding: 60px 0;
+  text-align: center;
+}
+#story h2 {
+  text-transform: uppercase;
+}
+#story .item {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+#story .item h4 {
+  overflow: hidden;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}
+#story .item p {
+  color: #a3a3a3;
+}
+#story .item a {
+  color: #0d0d0d;
+  font-size: 22px;
+  padding-right: 10px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+#story .item a:hover,
+#story .item a:focus,
+#story .item a:active {
   color: #a3a3a3;
 }
 
