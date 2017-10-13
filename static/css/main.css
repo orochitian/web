@@ -372,14 +372,20 @@ Services Style
   text-transform: uppercase;
   color: #fff;
 }
-#services p {
+#services p, #services a {
   color: #fff;
+  text-decoration: none;
 }
 #services .services-box {
   margin-top: 40px;
 }
 #services .services-box .col-md-4 {
   margin-bottom: 20px;
+  transition: .5s;
+}
+#services .services-box .col-md-4:hover {
+  opacity: .9;
+  text-shadow: 3px 3px 3px #a3a3a3;
 }
 #services .services-box .col-md-4 .media-left,
 #services .services-box .col-md-4 .media-right,
@@ -495,7 +501,7 @@ Work Process Style
 }
 
     /* ==========================================================================
-Fun Facts Style
+Category Style
 ========================================================================== */
 #category {
   background: #24242a;
@@ -535,7 +541,7 @@ Fun Facts Style
   margin-bottom: 15px;
 }
 
-    /* ==========================================================================
+/* ==========================================================================
 My blog Style
 ========================================================================== */
 #blog {
@@ -577,7 +583,48 @@ My blog Style
 }
 
 /* ==========================================================================
-My work Style
+Photo Style
+========================================================================== */
+#photo {
+  padding: 60px 0;
+  text-align: center;
+}
+#photo h2 {
+  text-transform: uppercase;
+}
+#photo .item {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+#photo .item h4 {
+  overflow: hidden;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}
+#photo .item p {
+  color: #a3a3a3;
+}
+#photo .item a {
+  color: #0d0d0d;
+  font-size: 22px;
+  padding-right: 10px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+#photo .item a:hover,
+#photo .item a:focus,
+#photo .item a:active {
+  color: #a3a3a3;
+}
+
+/* ==========================================================================
+Work Style
 ========================================================================== */
 #work {
   background: #24242a;
@@ -626,7 +673,7 @@ My work Style
 }
 
 /* ==========================================================================
-My story Style
+Story Style
 ========================================================================== */
 #story {
   padding: 60px 0;

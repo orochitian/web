@@ -19,6 +19,6 @@ app.use('*', function (req, res) {
     res.send('<h3>页面没找到，你说尴尬不尴尬？</h3>');
 });
 
-app.listen('80', function() {
+app.listen('8080', function() {
     console.log('服务器运行中...')
 });

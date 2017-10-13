@@ -1,7 +1,7 @@
 $(document).ready(function () {
     /***************** Navbar-Collapse ******************/
 
-    $(window).scroll(function () {
+    $(document).scroll(function (e) {
         if ($(".navbar").offset().top > 50) {
             $(".navbar-fixed-top").addClass("top-nav-collapse");
         } else {
@@ -15,7 +15,7 @@ $(document).ready(function () {
         $('a.page-scroll').bind('click', function (event) {
             var $anchor = $(this);
             $('html, body').stop().animate({
-                scrollTop: $($anchor.attr('href')).offset().top
+                scrollTop: $($anchor.attr('href')).offset().top - 50
             }, 1500, 'easeInOutExpo');
             event.preventDefault();
         });
@@ -26,12 +26,11 @@ $(document).ready(function () {
     $('body').scrollspy({
         target: '.navbar-fixed-top',
         offset: 51
-    })
+    });
 
     /***************** Owl Carousel ******************/
 
     $("#owl-hero").owlCarousel({
-
         navigation: true, // Show next and prev buttons
         slideSpeed: 300,
         paginationSpeed: 400,
@@ -39,7 +38,6 @@ $(document).ready(function () {
         transitionStyle: "fadeUp",
         autoPlay: true,
         navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"]
-
     });
 
 
@@ -55,13 +53,18 @@ $(document).ready(function () {
     /***************** Owl Carousel Testimonials ******************/
 
     $("#owl-testi").owlCarousel({
-
         navigation: false, // Show next and prev buttons
         paginationSpeed: 400,
         singleItem: true,
         transitionStyle: "backSlide",
         autoPlay: true
-
+    });
+    $("#photo-owl").owlCarousel({
+        navigation: false, // Show next and prev buttons
+        paginationSpeed: 400,
+        items: 3,
+        transitionStyle: "backSlide",
+        autoPlay: true
     });
     /***************** Countdown ******************/
 
