@@ -363,179 +363,92 @@ Welcome Style
     /* ==========================================================================
 Services Style
 ========================================================================== */
-#services {
+#story {
   background: #24242a;
   padding: 60px 0;
   text-align: center;
 }
-#services h2 {
+#story h2 {
   text-transform: uppercase;
   color: #fff;
 }
-#services p, #services a {
+#story p, #story a {
   color: #fff;
   text-decoration: none;
 }
-#services .services-box {
+#story .story-box {
   margin-top: 40px;
 }
-#services .services-box .col-md-4 {
+#story .story-box .col-md-4 {
   margin-bottom: 20px;
   transition: .5s;
 }
-#services .services-box .col-md-4:hover {
+#story .story-box .col-md-4:hover {
   opacity: .9;
   text-shadow: 3px 3px 3px #a3a3a3;
 }
-#services .services-box .col-md-4 .media-left,
-#services .services-box .col-md-4 .media-right,
-#services .services-box .col-md-4 .media-body {
+#story .story-box .col-md-4 .media-left,
+#story .story-box .col-md-4 .media-right,
+#story .story-box .col-md-4 .media-body {
   padding-right: 30px;
   vertical-align: baseline;
 }
-#services .services-box .col-md-4 .media-left p,
-#services .services-box .col-md-4 .media-right p,
-#services .services-box .col-md-4 .media-body p {
+#story .story-box .col-md-4 .media-left p,
+#story .story-box .col-md-4 .media-right p,
+#story .story-box .col-md-4 .media-body p {
   text-align: left;
 }
-#services .services-box .col-md-4 .media-left h3,
-#services .services-box .col-md-4 .media-right h3,
-#services .services-box .col-md-4 .media-body h3 {
+#story .story-box .col-md-4 .media-left h3,
+#story .story-box .col-md-4 .media-right h3,
+#story .story-box .col-md-4 .media-body h3 {
   text-transform: uppercase;
   color: #fff;
   text-align: left;
 }
-#services .services-box .col-md-4 .media-left span,
-#services .services-box .col-md-4 .media-right span,
-#services .services-box .col-md-4 .media-body span {
+#story .story-box .col-md-4 .media-left span,
+#story .story-box .col-md-4 .media-right span,
+#story .story-box .col-md-4 .media-body span {
   font-size: 36px;
   color: #fff;
 }
 
-    /* ==========================================================================
-Portfolio Style
-========================================================================== */
-#portfolio {
-  padding: 60px 0;
-  text-align: center;
-}
-#portfolio h2 {
-  text-transform: uppercase;
-}
-#portfolio p {
-  margin-bottom: 40px;
-}
-#portfolio .container-fluid {
-  padding-left: 0;
-  padding-right: 0;
-}
-#portfolio .container-fluid .col-lg-4 {
-  padding-left: 0;
-  padding-right: 0;
-}
-#portfolio .portfolio-box {
-  display: block;
-  position: relative;
-  margin: 0 auto;
-  max-width: 650px;
-}
-#portfolio .portfolio-box .portfolio-box-caption {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  color: #fff;
-  opacity: 0;
-  background: rgba(13, 13, 13, 0.6);
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-#portfolio .portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  transform: translateY(-50%);
-}
-#portfolio .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
-#portfolio .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-  padding: 0 15px;
-}
-#portfolio .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-  text-transform: uppercase;
-  font-size: 22px;
-  font-weight: 700;
-}
-#portfolio .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-  font-size: 18px;
-}
-#portfolio .portfolio-box:hover .portfolio-box-caption {
-  opacity: 1;
-}
 
     /* ==========================================================================
-Work Process Style
+Work Style
 ========================================================================== */
-#work-process {
-  padding: 60px 0;
-  text-align: center;
-}
-#work-process .col-lg-3 {
-  margin-top: 40px;
-}
-#work-process h2 {
-  text-transform: uppercase;
-}
-#work-process h4 {
-  text-transform: uppercase;
-  color: #0d0d0d;
-}
-#work-process span {
-  font-size: 48px;
-  color: #0d0d0d;
-  margin-bottom: 15px;
-}
-
-    /* ==========================================================================
-Category Style
-========================================================================== */
-#category {
+#work {
   background: #24242a;
   padding: 60px 0;
   text-align: center;
 }
-#category .col-lg-3 {
+#work .col-lg-3 {
   margin-top: 40px;
   margin-bottom: 20px;
 }
-#category h2 {
+#work h2 {
   text-transform: uppercase;
   color: #fff;
 }
-#category p {
+#work p {
   color: #fff;
 }
-#category h4 {
+#work h4 {
   text-transform: uppercase;
   color: #fff;
 }
-#category a {
+#work a {
   color: #fff;
 }
-#category a:hover{
+#work a:hover{
   color: #a3a3a3;
 }
-#category .number {
+#work .number {
   color: #fff;
   font-weight: 700;
   padding: 10px 0;
   margin: 0;
 }
-#category span {
+#work span {
   font-size: 48px;
   color: #fff;
   margin-bottom: 15px;
@@ -624,55 +537,6 @@ Photo Style
 }
 
 /* ==========================================================================
-Work Style
-========================================================================== */
-#work {
-  background: #24242a;
-  padding: 60px 0;
-  text-align: center;
-}
-#work h2 {
-  text-transform: uppercase;
-  color: #fff;
-}
-#work p{
-  color: #fff;
-}
-#work .sep{
-  border: 2px solid #fff;
-}
-#work .item {
-  margin-top: 40px;
-  margin-bottom: 20px;
-}
-#work .item h4 {
-  overflow: hidden;
-  margin-top: 20px;
-  text-transform: uppercase;
-  font-weight: 700;
-  text-overflow: ellipsis;
-  word-break: break-all;
-  white-space: nowrap;
-}
-#work .item p {
-  color: #a3a3a3;
-}
-#work .item a {
-  color: #fff;
-  font-size: 22px;
-  padding-right: 10px;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-#work .item a:hover,
-#work .item a:focus,
-#work .item a:active {
-  color: #a3a3a3;
-}
-
-/* ==========================================================================
 Story Style
 ========================================================================== */
 #story {
@@ -716,7 +580,7 @@ Story Style
     /* ==========================================================================
 Testimonials Style
 ========================================================================== */
-#testimonials {
+#mood {
   background-image: url("/static/images/testimonials/Testimonials.jpg");
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -728,39 +592,39 @@ Testimonials Style
   padding: 60px 0;
   text-align: center;
 }
-#testimonials h2 {
+#mood h2 {
   text-transform: uppercase;
   color: #fff;
 }
-#testimonials p {
+#mood p {
   color: #fff;
 }
-#testimonials .item .quote {
+#mood .item .quote {
   margin: 20px auto;
   width: 80%;
 }
-#testimonials .item .quote .right {
+#mood .item .quote .right {
   margin-left: 40px;
   font-size: 32px;
   color: #fff;
 }
-#testimonials .item .quote .left {
+#mood .item .quote .left {
   float: left;
   margin-right: 40px;
   color: #fff;
 }
-#testimonials .item h5 {
+#mood .item h5 {
   color: #fff;
   line-height: 36px;
 }
-#testimonials .item h5 span {
+#mood .item h5 span {
   font-weight: 700;
   text-transform: uppercase;
 }
-#testimonials .owl-pagination .owl-page.active span {
+#mood .owl-pagination .owl-page.active span {
   background-color: #fff;
 }
-#testimonials .owl-pagination .owl-page span {
+#mood .owl-pagination .owl-page span {
   border: 2px solid #fff;
   border-radius: 50%;
   background: transparent;
@@ -841,6 +705,9 @@ footer h6 {
   text-transform: uppercase;
   color: #fff;
 }
+footer .copy {
+  color: #fff;
+}
 
     /* ==========================================================================
 Media Queries Style
@@ -916,7 +783,7 @@ Media Queries Style
   }
 
   /*-- Services --*/
-  #services h3 {
+  #story h3 {
     font-size: 22px;
   }
 

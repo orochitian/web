@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     $('body').scrollspy({
         target: '.navbar-fixed-top',
-        offset: 51
+        offset: 200
     });
 
     /***************** Owl Carousel ******************/

@@ -9,8 +9,8 @@
   "author": "ryan lee",
   "license": "ISC",
   "devDependencies": {
-    "bootstrap": "^3.3.7",
     "express": "^4.16.2",
+    "mongoose": "^4.12.2",
     "nunjucks": "^3.0.1"
   }
 }
