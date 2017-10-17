@@ -1756,3 +1756,11 @@ ul.activity-timeline > li {
     border: 1px solid #CCC; }
 
 /*# sourceMappingURL=main.css.map */
+
+.img-preview {
+  max-width: 300px;
+}
+
+table td {
+  vertical-align: middle !important;
+}

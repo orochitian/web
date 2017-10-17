@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var Welcome = require('../model/welcome');
 
-router.get('/', function (req, res) {
-    res.render('index.html');
-});
+router.use('/', require('./client/index'));
 
 module.exports = router;

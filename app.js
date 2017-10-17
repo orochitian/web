@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 
+app.use( require('body-parser').urlencoded({extended : true}) );
+
 app.set('view engine', 'html');
 
 require('nunjucks').configure('./view', {
@@ -10,6 +12,8 @@ require('nunjucks').configure('./view', {
 });
 
 app.use('/static', express.static(__dirname + '/static'));
+
+app.use('/ueditor', require('./router/ueditor'));
 
 app.use('/', require('./router/client'));
 app.use('/manage', require('./router/manage'));

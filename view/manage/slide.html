@@ -1,0 +1,55 @@
+{% extends "./template.html" %}
+
+{% block content %}
+<div class="panel">
+    <div class="panel-heading">
+        <h3>{{title}}</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-hover text-center">
+            <thead>
+            <tr class="info">
+                <td width="400">图片预览</td>
+                <td>上传日期</td>
+                <td>图片大小</td>
+                <td width="300">操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><img src="/static/manage/img/profile-bg.png" class="img-preview" alt=""></td>
+                <td>2017-10-17</td>
+                <td>1000kb</td>
+                <td>
+                    <a href="#" class="btn btn-primary">编辑</a>&nbsp;&nbsp;
+                    <a href="#" class="btn btn-danger">删除</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+                {% if pageInfo.page == 1 %}
+                <li class="disabled"><a href="javascript:;"><span>上一页</span></a></li>
+                {% else %}
+                <li><a href="/diary?page={{pageInfo.page-1}}"><span>上一页</span></a></li>
+                {% endif %}
+
+                {% for i in pageInfo.pageArray %}
+                {% if i == pageInfo.page %}
+                <li class="active"><a href="javascript:;">{{i}}</span></a></li>
+                {% else %}
+                <li><a href="/diary?page={{i}}">{{i}}</span></a></li>
+                {% endif %}
+                {% endfor %}
+
+                {% if pageInfo.page >= pageInfo.pageNum %}
+                <li class="disabled"><a href="javascript:;"><span>下一页</span></a></li>
+                {% else %}
+                <li><a href="/diary?page={{pageInfo.page+1}}"><span>下一页</span></a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}

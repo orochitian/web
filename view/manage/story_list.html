@@ -1,0 +1,45 @@
+{% extends "./template.html" %}
+
+{% block content %}
+
+<div class="panel">
+	<div class="panel-heading">
+		<h3>{{title}}</h3>
+	</div>
+	<div class="panel-body">
+		<p>
+			<a href="/manage/story/{{category}}/addStory" class="btn btn-info">写故事</a>
+		</p>
+		<table class="table table-bordered table-hover text-center">
+			<thead>
+			<tr class="info">
+				<td>标题</td>
+				<td>概述</td>
+				<td>分类</td>
+				<td>创建日期</td>
+				<td width="300">编辑</td>
+			</tr>
+			</thead>
+			<tbody>
+			<!--{% for story in stories %}-->
+			<!--<tr>-->
+				<!--<td><a href="/manage/story/{{story.categoryName}}">{{story.categoryName}}</a></td>-->
+				<!--<td>{{story.categoryDescribe}}</td>-->
+				<!--<td>-->
+					<!--{{story.created_at.getFullYear()}}.{{story.created_at.getMonth()+1}}.{{story.created_at.getDate()}}-->
+				<!--</td>-->
+				<!--<td>-->
+					<!--<a href="/manage/story/edit" class="btn btn-info">编辑</a>&nbsp;&nbsp;-->
+					<!--<a href="/manage/story/deleteCategory?sid={{story._id}}" class="btn btn-danger">删除</a>-->
+				<!--</td>-->
+			<!--</tr>-->
+			<!--{% endfor %}-->
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
