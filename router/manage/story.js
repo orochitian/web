@@ -99,12 +99,14 @@ router.get('/:name/editStory', function (req, res) {
         if( info ) {
             story.findOne({_id:req.query.sid}, function (err, story) {
                 if( story ) {
-                    //  未完成 要加分类查询
-                    res.render('manage/story_edit.html', {
-                        category : story.category,
-                        title : story.title,
-                        preview : story.preview,
-                        content : story.content
+                    storyCategory.find(function (err, categories) {
+                        res.render('manage/story_edit.html', {
+                            categories : categories,
+                            category : story.category,
+                            title : story.title,
+                            preview : story.preview,
+                            content : story.content
+                        });
                     });
                 } else {
                     res.send('文章不存在，你说尴尬不尴尬');
@@ -115,7 +117,7 @@ router.get('/:name/editStory', function (req, res) {
         }
     });
 });
-router.post('/:name/addStory', function (req, res) {
+router.post('/:name/editStory', function (req, res) {
     storyCategory.findOne({name:req.params.name}, function (err, info) {
         if( info ) {
             storyCategory.update({name: req.params.name}, {$inc: { childNum: 1 }}, function() {});

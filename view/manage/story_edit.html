@@ -12,31 +12,31 @@
 	</div>
 	<div class="panel-body">
 		<div class="col-lg-10 col-lg-offset-1">
-			<form id="form-valid" class="form-horizontal" action="/manage/story/{{category}}/addStory" method="post">
+			<form id="form-valid" class="form-horizontal" action="/manage/story/{{category}}/editStory" method="post">
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon">标题</span>
-						<input id="title" name="title" class="form-control" type="text">
+						<input id="title" name="title" class="form-control" type="text" value="{{title}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon">概述</span>
-						<textarea class="form-control" name="preview" id="preview" rows="2"></textarea>
+						<textarea class="form-control" name="preview" id="preview" rows="2">{{preview}}</textarea>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon">分类</span>
-						<select class="form-control" name="category">
-							{% for category in categories %}
-							<option value="{{category.categoryName}}">{{category.categoryName}}</option>
+						<select class="form-control" name="category" value="{{category}}">
+							{% for item in categories %}
+							<option value="{{item.name}}" {% if item.name == category %}selected{% endif %}>{{item.name}}</option>
 							{% endfor %}
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<script id="web-ueditor" name="content" type="text/plain"></script>
+					<script id="web-ueditor" name="content" type="text/plain">{{content|safe}}</script>
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-info">保存</button>&nbsp;&nbsp;
