@@ -11,21 +11,13 @@ router.get('/', function (req, res) {
 });
 
 router.post('/welcome', function (req, res) {
-    Welcome.findOne(function (err, info) {
-        if( !info ) {
-            new Welcome({
-                title : req.body.title,
-                text : req.body.text
-            }).save();
-            res.redirect('/manage');
-        } else {
-            Welcome.update({_id: req.body.id}, {
-                title : req.body.title,
-                text : req.body.text
-            }, function (err) {
-                res.redirect('/manage');
-            });
-        }
+    Welcome.findOneAndUpdate({}, {
+        title : req.body.title,
+        text : req.body.text
+    }, {
+        upsert : true
+    },  function (err) {
+        res.redirect('/manage');
     });
 });
 

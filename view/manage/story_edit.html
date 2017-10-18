@@ -25,16 +25,16 @@
 						<textarea class="form-control" name="preview" id="preview" rows="2"></textarea>
 					</div>
 				</div>
-				<!--<div class="form-group">-->
-					<!--<div class="input-group">-->
-						<!--<span class="input-group-addon">分类</span>-->
-						<!--<select class="form-control" name="category">-->
-							<!--{% for category in categories %}-->
-							<!--<option value="{{category.categoryName}}">{{category.categoryName}}</option>-->
-							<!--{% endfor %}-->
-						<!--</select>-->
-					<!--</div>-->
-				<!--</div>-->
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon">分类</span>
+						<select class="form-control" name="category">
+							{% for category in categories %}
+							<option value="{{category.categoryName}}">{{category.categoryName}}</option>
+							{% endfor %}
+						</select>
+					</div>
+				</div>
 				<div class="form-group">
 					<script id="web-ueditor" name="content" type="text/plain"></script>
 				</div>

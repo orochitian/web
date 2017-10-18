@@ -4,7 +4,9 @@
 
 <div class="panel">
 	<div class="panel-heading">
-		<h3>{{title}}</h3>
+		<ol class="breadcrumb">
+			<li class="active">{{title}}</li>
+		</ol>
 	</div>
 	<div class="panel-body">
 		<p>
@@ -14,23 +16,21 @@
 		<table class="table table-bordered table-hover text-center">
 			<thead>
 			<tr class="info">
-				<td>名称</td>
-				<td>描述</td>
-				<td>创建日期</td>
+				<td>分类</td>
+				<td>分类描述</td>
+				<td>文章统计</td>
 				<td width="300">编辑</td>
 			</tr>
 			</thead>
 			<tbody>
-			{% for story in stories %}
+			{% for data in datas %}
 			<tr>
-				<td><a href="/manage/story/{{story.categoryName}}">{{story.categoryName}}</a></td>
-				<td>{{story.categoryDescribe}}</td>
+				<td><a href="/manage/story/{{data.name}}">{{data.name}}</a></td>
+				<td>{{data.describe}}</td>
+				<td>{{data.childNum}}</td>
 				<td>
-					{{story.created_at.getFullYear()}}.{{story.created_at.getMonth()+1}}.{{story.created_at.getDate()}}
-				</td>
-				<td>
-					<a href="/manage/story/edit" class="btn btn-info">编辑</a>&nbsp;&nbsp;
-					<a href="/manage/story/deleteCategory?sid={{story._id}}" class="btn btn-danger">删除</a>
+					<a href="/manage/story/editCategory?sid={{data._id}}" class="btn btn-info story-edit-btn">编辑</a>&nbsp;&nbsp;
+					<a href="/manage/story/deleteCategory?sid={{data._id}}&category={{data.name}}" class="btn btn-danger">删除</a>
 				</td>
 			</tr>
 			{% endfor %}
@@ -51,17 +51,44 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="categoryName">分类名:</label>
-						<input id="categoryName" name="categoryName" type="text" class="form-control">
+						<label>分类名:</label>
+						<input name="name" type="text" class="form-control">
 					</div>
 					<div class="form-group">
-						<label for="categoryDescribe">分类描述:</label>
-						<input id="categoryDescribe" name="categoryDescribe" type="text" class="form-control">
+						<label>分类描述:</label>
+						<input name="describe" type="text" class="form-control">
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-info">添加</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="story-edit-modal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="/manage/story/editCategory" method="post">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+					<h4 class="modal-title">修改故事分类</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>分类名:</label>
+						<input name="name" type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>分类描述:</label>
+						<input name="describe" type="text" class="form-control">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-info">修改</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 				</div>
 			</form>
 		</div>

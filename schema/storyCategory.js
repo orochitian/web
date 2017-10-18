@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
 var storyCategory_schema = new mongoose.Schema({
-    categoryName : String,
-    categoryDescribe : String
+    name : String,
+    describe : String,
+    childNum : {
+        type : Number,
+        default : 0
+    }
 }, {
     timestamps : {
         createdAt : 'created_at',

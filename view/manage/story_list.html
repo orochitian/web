@@ -4,7 +4,10 @@
 
 <div class="panel">
 	<div class="panel-heading">
-		<h3>{{title}}</h3>
+		<ol class="breadcrumb">
+			<li><a href="/manage/story">故事管理</a></li>
+			<li class="active">{{title}}</li>
+		</ol>
 	</div>
 	<div class="panel-body">
 		<p>
@@ -13,27 +16,26 @@
 		<table class="table table-bordered table-hover text-center">
 			<thead>
 			<tr class="info">
-				<td>标题</td>
-				<td>概述</td>
-				<td>分类</td>
+				<td>文章标题</td>
+				<td>文章概述</td>
 				<td>创建日期</td>
 				<td width="300">编辑</td>
 			</tr>
 			</thead>
 			<tbody>
-			<!--{% for story in stories %}-->
-			<!--<tr>-->
-				<!--<td><a href="/manage/story/{{story.categoryName}}">{{story.categoryName}}</a></td>-->
-				<!--<td>{{story.categoryDescribe}}</td>-->
-				<!--<td>-->
-					<!--{{story.created_at.getFullYear()}}.{{story.created_at.getMonth()+1}}.{{story.created_at.getDate()}}-->
-				<!--</td>-->
-				<!--<td>-->
-					<!--<a href="/manage/story/edit" class="btn btn-info">编辑</a>&nbsp;&nbsp;-->
-					<!--<a href="/manage/story/deleteCategory?sid={{story._id}}" class="btn btn-danger">删除</a>-->
-				<!--</td>-->
-			<!--</tr>-->
-			<!--{% endfor %}-->
+			{% for data in datas %}
+			<tr>
+				<td><a href="/manage/story/{{category}}">{{data.title}}</a></td>
+				<td>{{data.preview}}</td>
+				<td>
+					{{data.created_at.getFullYear()}}.{{data.created_at.getMonth()+1}}.{{data.created_at.getDate()}}
+				</td>
+				<td>
+					<a href="/manage/story/{{category}}/editStory?sid={{data._id}}" class="btn btn-info">编辑</a>&nbsp;&nbsp;
+					<a href="/manage/story/{{category}}/deleteStory?sid={{data._id}}" class="btn btn-danger">删除</a>
+				</td>
+			</tr>
+			{% endfor %}
 			</tbody>
 		</table>
 	</div>

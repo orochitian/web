@@ -1764,3 +1764,9 @@ ul.activity-timeline > li {
 table td {
   vertical-align: middle !important;
 }
+
+.panel-heading .breadcrumb {
+  padding: 8px 0;
+  background-color: #fff;
+  margin-bottom: 0;
+}
