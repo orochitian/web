@@ -12,7 +12,7 @@
 	</div>
 	<div class="panel-body">
 		<div class="col-lg-10 col-lg-offset-1">
-			<form id="form-valid" class="form-horizontal" action="/manage/story/{{category}}/editStory" method="post">
+			<form id="form-valid" class="form-horizontal" action="/manage/story/{{category}}/editStory/{{id}}" method="post">
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon">标题</span>
@@ -50,5 +50,5 @@
 {% endblock %}
 
 {% block script %}
-{% include './ueditor.html' %}
+	{% include './ueditor.html' %}
 {% endblock %}

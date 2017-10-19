@@ -11,7 +11,7 @@
 	<div class="panel-body">
 		<p>
 			<a href="/manage/slide/story" class="btn btn-info">轮播图管理</a>&nbsp;&nbsp;
-			<a href="javascript:;" class="btn btn-info story-add-btn">添加分类</a>
+			<a href="javascript:;" class="btn btn-info add-btn">添加分类</a>
 		</p>
 		<table class="table table-bordered table-hover text-center">
 			<thead>
@@ -29,8 +29,8 @@
 				<td>{{data.describe}}</td>
 				<td>{{data.childNum}}</td>
 				<td>
-					<a href="/manage/story/editCategory?sid={{data._id}}" class="btn btn-info story-edit-btn">编辑</a>&nbsp;&nbsp;
-					<a href="/manage/story/deleteCategory?sid={{data._id}}&category={{data.name}}" class="btn btn-danger">删除</a>
+					<a href="/manage/story/editCategory?sid={{data._id}}" id="{{data._id}}" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
+					<a href="/manage/story/deleteCategory?sid={{data._id}}&category={{data.name}}" class="btn btn-danger delete-btn">删除</a>
 				</td>
 			</tr>
 			{% endfor %}
@@ -41,10 +41,10 @@
 {% endblock %}
 
 {% block modal %}
-<div id="story-add-modal" class="modal fade">
+<div id="add-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="/manage/story/addCategory" method="post">
+			<form id="addCategory" action="/manage/story/addCategory" method="post">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 					<h4 class="modal-title">添加故事分类</h4>
@@ -68,10 +68,11 @@
 	</div>
 </div>
 
-<div id="story-edit-modal" class="modal fade">
+<div id="edit-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="/manage/story/editCategory" method="post">
+			<form id="editCategory" action="/manage/story/editCategory" method="post">
+				<input type="hidden" name="id" value="">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 					<h4 class="modal-title">修改故事分类</h4>
@@ -97,5 +98,8 @@
 {% endblock %}
 
 {% block script %}
-<script src="/static/manage/story.js"></script>
+<script src="/static/validator/validator.min.js"></script>
+<script src="/static/layer/layer.js"></script>
+<script src="/static/manage/remote.js"></script>
+<script src="/static/manage/category.js"></script>
 {% endblock %}

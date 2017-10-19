@@ -31,8 +31,8 @@
 					{{data.created_at.getFullYear()}}.{{data.created_at.getMonth()+1}}.{{data.created_at.getDate()}}
 				</td>
 				<td>
-					<a href="/manage/story/{{category}}/editStory?sid={{data._id}}" class="btn btn-info">编辑</a>&nbsp;&nbsp;
-					<a href="/manage/story/{{category}}/deleteStory?sid={{data._id}}" class="btn btn-danger">删除</a>
+					<a href="/manage/story/{{category}}/editStory/{{data._id}}" class="btn btn-info">编辑</a>&nbsp;&nbsp;
+					<a href="/manage/story/{{category}}/deleteStory/{{data._id}}" class="btn btn-danger">删除</a>
 				</td>
 			</tr>
 			{% endfor %}
@@ -40,8 +40,4 @@
 		</table>
 	</div>
 </div>
-{% endblock %}
-
-{% block script %}
-
 {% endblock %}

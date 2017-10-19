@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
 router.post('/addCategory', function (req, res) {
     storyCategory.findOne({name : req.body.name}, function (err, info) {
         if( info ) {
-            res.send('分类名重复');
+            res.send('分类已存在，你说尴尬不尴尬');
         } else {
             storyCategory.create({
                 name : req.body.name,
@@ -29,11 +29,17 @@ router.post('/addCategory', function (req, res) {
 
 //  编辑分类
 router.post('/editCategory', function (req, res) {
-    storyCategory.update({_id : req.query.sid}, {
-        name : req.body.name,
-        describe : req.body.describe
-    }, function (err, info) {
-        res.redirect('/manage/story');
+    storyCategory.findOne({name : req.body.name}, function (err, info) {
+        if( info && info._id != req.query.sid ) {
+            res.send('分类已存在，你说尴尬不尴尬');
+        } else {
+            storyCategory.update({_id : req.query.sid}, {
+                name : req.body.name,
+                describe : req.body.describe
+            }, function (err, info) {
+                res.redirect('/manage/story');
+            });
+        }
     });
 });
 
@@ -44,6 +50,25 @@ router.get('/deleteCategory', function (req, res) {
         res.redirect('/manage/story');
     });
 });
+
+//  分类验证
+router.post('/storyAddCategoryExists', function (req, res) {
+    storyCategory.findOne({name: req.body.name}, function (err, info) {
+        info ? res.json({valid: false}) : res.json({valid: true});
+    });
+});
+//  编辑分类时验证是否存在  要排除自身
+router.post('/storyEditCategoryExists', function (req, res) {
+    console.log(req.body)
+    storyCategory.findOne({name: req.body.name}, function (err, info) {
+        if( info && info._id != req.body.id ) {
+            res.json({valid: false});
+        } else {
+            res.json({valid: true});
+        }
+    });
+});
+//  分类验证  结束
 
 //  分类详情列表
 router.get('/:name', function (req, res) {
@@ -57,10 +82,11 @@ router.get('/:name', function (req, res) {
                 });
             });
         } else {
-            res.send('分类不存在');
+            res.send('分类不存在，你说尴尬不尴尬');
         }
     });
 });
+//  分类详情列表  结束
 
 //  写故事
 router.get('/:name/addStory', function (req, res) {
@@ -71,7 +97,7 @@ router.get('/:name/addStory', function (req, res) {
                 title : '写故事'
             });
         } else {
-            res.send('分类不存在');
+            res.send('分类不存在，你说尴尬不尴尬');
         }
     });
 });
@@ -88,16 +114,17 @@ router.post('/:name/addStory', function (req, res) {
                 res.redirect('/manage/story/' + req.params.name);
             });
         } else {
-            res.send('分类不存在');
+            res.send('分类不存在，你说尴尬不尴尬');
         }
     });
 });
+//  写故事  结束
 
 //  编辑故事
-router.get('/:name/editStory', function (req, res) {
+router.get('/:name/editStory/:sid', function (req, res) {
     storyCategory.findOne({name:req.params.name}, function (err, info) {
         if( info ) {
-            story.findOne({_id:req.query.sid}, function (err, story) {
+            story.findOne({_id:req.params.sid}, function (err, story) {
                 if( story ) {
                     storyCategory.find(function (err, categories) {
                         res.render('manage/story_edit.html', {
@@ -105,7 +132,8 @@ router.get('/:name/editStory', function (req, res) {
                             category : story.category,
                             title : story.title,
                             preview : story.preview,
-                            content : story.content
+                            content : story.content,
+                            id: story._id
                         });
                     });
                 } else {
@@ -117,30 +145,31 @@ router.get('/:name/editStory', function (req, res) {
         }
     });
 });
-router.post('/:name/editStory', function (req, res) {
+router.post('/:name/editStory/:sid', function (req, res) {
     storyCategory.findOne({name:req.params.name}, function (err, info) {
         if( info ) {
-            storyCategory.update({name: req.params.name}, {$inc: { childNum: 1 }}, function() {});
-            story.create({
+            story.findOneAndUpdate({_id:req.params.sid}, {
                 title : req.body.title,
                 preview : req.body.preview,
-                category : req.params.name,
+                category : req.body.category,
                 content : req.body.content
             }, function () {
                 res.redirect('/manage/story/' + req.params.name);
             });
         } else {
-            res.send('分类不存在');
+            res.send('分类不存在，你说尴尬不尴尬');
         }
     });
 });
+//  编辑故事  结束
 
 //  删除故事
-router.get('/:name/deleteStory', function (req, res) {
+router.get('/:name/deleteStory/:sid', function (req, res) {
     storyCategory.update({name: req.params.name}, {$inc: { childNum: -1 }}, function() {});
-    story.remove({_id:req.query.sid}, function (err, info) {
+    story.remove({_id:req.params.sid}, function (err, info) {
        res.redirect('/manage/story/' + req.params.name);
     });
 });
+//  删除故事  结束
 
 module.exports = router;
