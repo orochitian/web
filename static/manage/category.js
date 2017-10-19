@@ -5,7 +5,7 @@ $(function () {
         });
         $('#addCategory').remote('/manage/story/storyAddCategoryExists');
     });
-
+    var test = $('#editCategory').remote('/manage/story/storyEditCategoryExists')
     $('.edit-btn').on('click', function () {
         var $this = $(this);
         var $modal = $('#edit-modal');
@@ -19,11 +19,9 @@ $(function () {
             backdrop : 'static'
         }).find('form').attr('action', actionSrc);
 
-        console.log($modal.find('[name="id"]').val());
         var id = $modal.find('[name="id"]').val();
-        $('#editCategory').remote('/manage/story/storyEditCategoryExists', {
-            id : $this.attr('href')
-        });
+        var url = '/manage/story/storyEditCategoryExists/';
+        $('#editCategory').remote('/manage/story/storyEditCategoryExists', id)
         return false;
     });
 
