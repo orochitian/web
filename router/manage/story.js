@@ -59,7 +59,7 @@ router.post('/storyAddCategoryExists', function (req, res) {
 });
 //  编辑分类时验证是否存在  要排除自身
 router.post('/storyEditCategoryExists', function (req, res) {
-    console.log(req.body)
+    console.log(req.body);
     storyCategory.findOne({name: req.body.name}, function (err, info) {
         if( info && info._id != req.body.id ) {
             res.json({valid: false});

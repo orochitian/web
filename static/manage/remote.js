@@ -1,4 +1,4 @@
-$.fn.remote = function (url, data) {
+$.fn.remote = function (url, sid) {
     var validOption = {
         trigger : 'change',
         //  验证字段
@@ -18,11 +18,29 @@ $.fn.remote = function (url, data) {
                         message: "分类已存在。",
                         type: "post",
                         dataType: 'json',
-                        data : data || {},
+                        data : {
+                            sid : function () {
+                                return $('#edit-modal').find('[name="id"]').val()
+                            }
+                        },
                         delay: 500,
                     }
                 }
-            }
+            },
+            // id : {
+            //     validators: {
+            //         notEmpty: {
+            //             message: '分类名称不能为空。'
+            //         },
+            //         remote: {
+            //             url: url,
+            //             message: "分类已存在。",
+            //             type: "post",
+            //             dataType: 'json',
+            //             delay: 500,
+            //         }
+            //     }
+            // }
         }
     }
     return this.bootstrapValidator(validOption);
