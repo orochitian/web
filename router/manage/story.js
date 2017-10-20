@@ -1,12 +1,17 @@
 var router = require('express').Router();
 var storyCategory = require('../../model/storyCategory');
 var story = require('../../model/story');
+var pagination = require('./pagination');
 
 router.get('/', function (req, res) {
     storyCategory.find(function (err, info) {
-        res.render('manage/story.html', {
-            title : '故事管理',
-            datas : info
+        var paginationModel = pagination.model(storyCategory, req.query.page, 2, 2, info.length);
+        paginationModel.sort('-created_at').then(function (story) {
+            res.render('manage/story.html', {
+                title : '故事管理',
+                datas : story,
+                pageInfo : pagination.pageInfo
+            });
         });
     });
 });
@@ -30,10 +35,10 @@ router.post('/addCategory', function (req, res) {
 //  编辑分类
 router.post('/editCategory', function (req, res) {
     storyCategory.findOne({name : req.body.name}, function (err, info) {
-        if( info && info._id != req.query.sid ) {
+        if( info && info._id != req.body.id ) {
             res.send('分类已存在，你说尴尬不尴尬');
         } else {
-            storyCategory.update({_id : req.query.sid}, {
+            storyCategory.update({_id : req.body.id}, {
                 name : req.body.name,
                 describe : req.body.describe
             }, function (err, info) {
@@ -51,7 +56,7 @@ router.get('/deleteCategory', function (req, res) {
     });
 });
 
-//  分类验证
+//  异步分类验证
 router.post('/storyAddCategoryExists', function (req, res) {
     storyCategory.findOne({name: req.body.name}, function (err, info) {
         info ? res.json({valid: false}) : res.json({valid: true});
@@ -59,9 +64,8 @@ router.post('/storyAddCategoryExists', function (req, res) {
 });
 //  编辑分类时验证是否存在  要排除自身
 router.post('/storyEditCategoryExists', function (req, res) {
-    console.log(req.body);
     storyCategory.findOne({name: req.body.name}, function (err, info) {
-        if( info && info._id != req.body.id ) {
+        if( info && info._id != req.body.sid ) {
             res.json({valid: false});
         } else {
             res.json({valid: true});
@@ -124,7 +128,7 @@ router.post('/:name/addStory', function (req, res) {
 router.get('/:name/editStory/:sid', function (req, res) {
     storyCategory.findOne({name:req.params.name}, function (err, info) {
         if( info ) {
-            story.findOne({_id:req.params.sid}, function (err, story) {
+            story.findOne({_id:req.params.sid, category:req.params.name}, function (err, story) {
                 if( story ) {
                     storyCategory.find(function (err, categories) {
                         res.render('manage/story_edit.html', {
@@ -137,7 +141,7 @@ router.get('/:name/editStory/:sid', function (req, res) {
                         });
                     });
                 } else {
-                    res.send('文章不存在，你说尴尬不尴尬');
+                    res.send('分类下文章不存在，你说尴尬不尴尬');
                 }
             });
         } else {
@@ -146,20 +150,21 @@ router.get('/:name/editStory/:sid', function (req, res) {
     });
 });
 router.post('/:name/editStory/:sid', function (req, res) {
-    storyCategory.findOne({name:req.params.name}, function (err, info) {
-        if( info ) {
-            story.findOneAndUpdate({_id:req.params.sid}, {
-                title : req.body.title,
-                preview : req.body.preview,
-                category : req.body.category,
-                content : req.body.content
-            }, function () {
-                res.redirect('/manage/story/' + req.params.name);
-            });
-        } else {
-            res.send('分类不存在，你说尴尬不尴尬');
+    story.findOne({_id:req.params.sid}, function (err, info) {
+        if( info.category != req.body.category ) {
+            storyCategory.update({name: req.body.category}, {$inc: { childNum: 1 }}, function() {});
+            storyCategory.update({name: req.params.name}, {$inc: { childNum: -1 }}, function() {});
         }
+        story.findOneAndUpdate({_id:req.params.sid}, {
+            title : req.body.title,
+            preview : req.body.preview,
+            category : req.body.category,
+            content : req.body.content
+        }, function (err, story) {
+            res.redirect('/manage/story/' + req.params.name);
+        });
     });
+
 });
 //  编辑故事  结束
 

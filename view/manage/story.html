@@ -29,13 +29,36 @@
 				<td>{{data.describe}}</td>
 				<td>{{data.childNum}}</td>
 				<td>
-					<a href="/manage/story/editCategory?sid={{data._id}}" id="{{data._id}}" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
+					<a href="javascript:;" id="{{data._id}}" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
 					<a href="/manage/story/deleteCategory?sid={{data._id}}&category={{data.name}}" class="btn btn-danger delete-btn">删除</a>
 				</td>
 			</tr>
 			{% endfor %}
 			</tbody>
 		</table>
+		<nav>
+			<ul class="pagination">
+				{% if pageInfo.page == 1 %}
+				<li class="disabled"><a href="javascript:;"><span>上一页</span></a></li>
+				{% else %}
+				<li><a href="/manage/story?page={{pageInfo.page-1}}"><span>上一页</span></a></li>
+				{% endif %}
+
+				{% for i in pageInfo.pageArray %}
+				{% if i == pageInfo.page %}
+				<li class="active"><a href="javascript:;">{{i}}</span></a></li>
+				{% else %}
+				<li><a href="/manage/story?page={{i}}">{{i}}</span></a></li>
+				{% endif %}
+				{% endfor %}
+
+				{% if pageInfo.page >= pageInfo.pageNum %}
+				<li class="disabled"><a href="javascript:;"><span>下一页</span></a></li>
+				{% else %}
+				<li><a href="/manage/story?page={{pageInfo.page+1}}"><span>下一页</span></a></li>
+				{% endif %}
+			</ul>
+		</nav>
 	</div>
 </div>
 {% endblock %}
@@ -72,7 +95,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form id="editCategory" action="/manage/story/editCategory" method="post">
-				<input type="test" name="id" value="">
+				<input type="hidden" name="id" value="">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 					<h4 class="modal-title">修改故事分类</h4>
@@ -98,8 +121,7 @@
 {% endblock %}
 
 {% block script %}
-<script src="/static/validator/validator.min.js"></script>
-<script src="/static/layer/layer.js"></script>
-<script src="/static/manage/remote.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+<script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
 <script src="/static/manage/category.js"></script>
 {% endblock %}

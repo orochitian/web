@@ -18,21 +18,33 @@
 			<tr class="info">
 				<td>文章标题</td>
 				<td>文章概述</td>
-				<td>创建日期</td>
-				<td width="300">编辑</td>
+				<td width="200">创建日期</td>
+				<td width="220">编辑</td>
 			</tr>
 			</thead>
 			<tbody>
 			{% for data in datas %}
 			<tr>
-				<td><a href="/manage/story/{{category}}">{{data.title}}</a></td>
-				<td>{{data.preview}}</td>
+				<td title="{{data.title}}"><a href="/manage/story/{{category}}">{{data.title}}</a></td>
+				<td title="{{data.preview}}">{{data.preview}}</td>
 				<td>
-					{{data.created_at.getFullYear()}}.{{data.created_at.getMonth()+1}}.{{data.created_at.getDate()}}
+					{{data.created_at.getFullYear()}}年
+					{{data.created_at.getMonth()+1}}月
+					{{data.created_at.getDate()}}日&nbsp;&nbsp;&nbsp;&nbsp;
+					{% if data.created_at.getHours() > 9 %}
+					{{data.created_at.getHours()}} :
+					{% else %}
+					0{{data.created_at.getHours()}} :
+					{% endif %}
+					{% if data.created_at.getMinutes() > 9 %}
+					{{data.created_at.getMinutes()}}
+					{% else %}
+					0{{data.created_at.getMinutes()}}
+					{% endif %}
 				</td>
 				<td>
 					<a href="/manage/story/{{category}}/editStory/{{data._id}}" class="btn btn-info">编辑</a>&nbsp;&nbsp;
-					<a href="/manage/story/{{category}}/deleteStory/{{data._id}}" class="btn btn-danger">删除</a>
+					<a href="/manage/story/{{category}}/deleteStory/{{data._id}}" class="btn btn-danger delete-btn">删除</a>
 				</td>
 			</tr>
 			{% endfor %}
@@ -40,4 +52,9 @@
 		</table>
 	</div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+<script src="/static/manage/list.js"></script>
 {% endblock %}
