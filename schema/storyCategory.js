@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var storyCategory_schema = new mongoose.Schema({
     name : String,
     describe : String,
+    password : String,
     childNum : {
         type : Number,
         default : 0

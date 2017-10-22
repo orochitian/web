@@ -18,7 +18,7 @@
 			<tr class="info">
 				<td>分类</td>
 				<td>分类描述</td>
-				<td>文章统计</td>
+				<td width="100">文章统计</td>
 				<td width="300">编辑</td>
 			</tr>
 			</thead>
@@ -29,7 +29,7 @@
 				<td>{{data.describe}}</td>
 				<td>{{data.childNum}}</td>
 				<td>
-					<a href="javascript:;" id="{{data._id}}" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
+					<a href="javascript:;" id="{{data._id}}" name="{{data.name}}" describe="{{data.describe}}" password="{{data.password}}" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
 					<a href="/manage/story/deleteCategory?sid={{data._id}}&category={{data.name}}" class="btn btn-danger delete-btn">删除</a>
 				</td>
 			</tr>
@@ -74,12 +74,16 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label>分类名:</label>
+						<label> 分类名称:</label>
 						<input name="name" type="text" class="form-control">
 					</div>
 					<div class="form-group">
-						<label>分类描述:</label>
+						<label> 分类描述:</label>
 						<input name="describe" type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label> 分类密码:</label>
+						<input name="password" type="text" class="form-control">
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -102,12 +106,16 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label>分类名:</label>
+						<label> 分类名称:</label>
 						<input name="name" type="text" class="form-control">
 					</div>
 					<div class="form-group">
-						<label>分类描述:</label>
+						<label> 分类描述:</label>
 						<input name="describe" type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label> 分类密码:</label>
+						<input name="password" type="text" class="form-control">
 					</div>
 				</div>
 				<div class="modal-footer">

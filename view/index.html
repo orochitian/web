@@ -119,45 +119,14 @@
             <p>社会我睿哥，人狠话不多。兄弟三百多，全是自行车。</p>
             <div class="story-box">
                 <div class="row wow fadeInUp" data-wow-delay=".3s">
+                    {% for item in story %}
                     <div class="col-md-4">
                         <div class="media-body">
-                            <h3><a href="#">回不到的过去</a></h3>
-                            <p>剪不断理还乱</p>
+                            <h3><a href="/story/{{item.name}}">{{item.name}}</a></h3>
+                            <p>{{item.describe}}</p>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="media-body">
-                            <h3><a href="#">回不到的过去</a></h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="media-body">
-                            <h3><a href="#">回不到的过去</a></h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row wow fadeInUp" data-wow-delay=".6s">
-                    <div class="col-md-4">
-                        <div class="media-body">
-                            <h3><a href="#">回不到的过去</a></h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="media-body">
-                            <h3><a href="#">回不到的过去</a></h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="media-body">
-                            <h3><a href="#">回不到的过去</a></h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend.</p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

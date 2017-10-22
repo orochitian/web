@@ -384,8 +384,8 @@ Services Style
   transition: .5s;
 }
 #story .story-box .col-md-4:hover {
-  opacity: .9;
-  text-shadow: 3px 3px 3px #a3a3a3;
+  opacity: .7;
+  text-shadow: 2px 2px 3px #a3a3a3;
 }
 #story .story-box .col-md-4 .media-left,
 #story .story-box .col-md-4 .media-right,

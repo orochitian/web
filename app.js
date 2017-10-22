@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var app = express();
 
 app.use( require('body-parser').urlencoded({extended : true}) );
@@ -22,7 +23,9 @@ app.use('*', function (req, res) {
     res.send('<h3>页面没找到，你说尴尬不尴尬？</h3>');
 });
 
-require('mongoose').connect('mongodb://localhost:27017/web', {useMongoClient : true}, function (err) {
+mongoose.Promise = global.Promise;
+
+mongoose.connect('mongodb://localhost:27017/web', {useMongoClient : true}, function (err) {
     if( err ) {
         console.log('数据库连接失败.');
     } else {

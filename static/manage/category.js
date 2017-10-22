@@ -48,15 +48,13 @@ $(function () {
         var $modal = $('#edit-modal');
         return this.on('click', function () {
             var $this = $(this);
-            var categoryName = $this.parents('tr').find('td').eq(0).find('a').html();
-            var categoryDescribe = $this.parents('tr').find('td').eq(1).html();
-            $modal.find('[name="name"]').val(categoryName);
-            $modal.find('[name="describe"]').val(categoryDescribe);
-            $modal.find('[name="id"]').val($this.attr('id'));
+            $modal.find('[name="name"]').val( $this.attr('name') );
+            $modal.find('[name="describe"]').val( $this.attr('describe') );
+            $modal.find('[name="password"]').val( $this.attr('password') );
+            $modal.find('[name="id"]').val( $this.attr('id') );
             $modal.modal({
                 backdrop : 'static'
             });
-            var id = $modal.find('[name="id"]').val();
             $('#editCategory').remote(url);
             return false;
         });

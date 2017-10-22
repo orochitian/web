@@ -5,7 +5,7 @@ var pagination = require('./pagination');
 
 router.get('/', function (req, res) {
     storyCategory.find(function (err, info) {
-        var paginationModel = pagination.model(storyCategory, req.query.page, 2, 2, info.length);
+        var paginationModel = pagination.model(storyCategory, req.query.page, 2, 6, info.length);
         paginationModel.sort('-created_at').then(function (story) {
             res.render('manage/story.html', {
                 title : '故事管理',
@@ -24,7 +24,8 @@ router.post('/addCategory', function (req, res) {
         } else {
             storyCategory.create({
                 name : req.body.name,
-                describe : req.body.describe
+                describe : req.body.describe,
+                password : req.body.password
             }, function () {
                 res.redirect('/manage/story');
             });
@@ -40,7 +41,8 @@ router.post('/editCategory', function (req, res) {
         } else {
             storyCategory.update({_id : req.body.id}, {
                 name : req.body.name,
-                describe : req.body.describe
+                describe : req.body.describe,
+                password : req.body.password
             }, function (err, info) {
                 res.redirect('/manage/story');
             });
@@ -82,7 +84,7 @@ router.get('/:name', function (req, res) {
                 res.render('manage/story_list.html', {
                     category : req.params.name,
                     datas : stories,
-                    title : '故事分类-' + req.params.name
+                    title : req.params.name
                 });
             });
         } else {
