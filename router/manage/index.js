@@ -4,7 +4,7 @@ var Welcome = require('../../model/welcome');
 router.get('/', function (req, res) {
     Welcome.findOne(function (err, info) {
         res.render('manage/index.html', {
-            title : '首页管理',
+            title : '首页',
             welcome : info
         });
     });

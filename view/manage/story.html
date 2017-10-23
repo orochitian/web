@@ -30,7 +30,7 @@
 				<td>{{data.childNum}}</td>
 				<td>
 					<a href="javascript:;" id="{{data._id}}" name="{{data.name}}" describe="{{data.describe}}" password="{{data.password}}" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
-					<a href="/manage/story/deleteCategory?sid={{data._id}}&category={{data.name}}" class="btn btn-danger delete-btn">删除</a>
+					<a href="/manage/story/deleteCategory?sid={{data._id}}&category={{data.name}}&page={{pageInfo.page}}" class="btn btn-danger delete-btn">删除</a>
 				</td>
 			</tr>
 			{% endfor %}

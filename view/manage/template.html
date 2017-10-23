@@ -69,12 +69,12 @@
 		<div class="sidebar-scroll">
 			<nav>
 				<ul class="nav">
-					<li><a href="/manage" class="active"><i class="lnr lnr-home"></i> <span>首页</span></a></li>
-					<li><a href="/manage/story" class=""><i class="lnr lnr-pencil"></i> <span>故事管理</span></a></li>
-					<li><a href="/manage/blog" class=""><i class="lnr lnr-highlight"></i> <span>博客管理</span></a></li>
-					<li><a href="/manage/mood" class=""><i class="lnr lnr-heart-pulse"></i> <span>心情管理</span></a></li>
-					<li><a href="/manage/photo" class=""><i class="lnr lnr-picture"></i> <span>相册管理</span></a></li>
-					<li><a href="/manage/work" class=""><i class="lnr lnr-keyboard"></i> <span>工作管理</span></a></li>
+					<li><a href="/manage" class="{%if title.indexOf('首页') >= 0%}active{%endif%}"><i class="lnr lnr-home"></i> <span>首页</span></a></li>
+					<li><a href="/manage/story" class="{%if title.indexOf('故事') >= 0%}active{%endif%}"><i class="lnr lnr-pencil"></i> <span>故事管理</span></a></li>
+					<li><a href="/manage/blog" class="{%if title == ''%}active{%endif%}"><i class="lnr lnr-highlight"></i> <span>博客管理</span></a></li>
+					<li><a href="/manage/mood" class="{%if title == ''%}active{%endif%}"><i class="lnr lnr-heart-pulse"></i> <span>心情管理</span></a></li>
+					<li><a href="/manage/photo" class="{%if title == ''%}active{%endif%}"><i class="lnr lnr-picture"></i> <span>相册管理</span></a></li>
+					<li><a href="/manage/work" class="{%if title == ''%}active{%endif%}"><i class="lnr lnr-keyboard"></i> <span>工作管理</span></a></li>
 					<!--<li>-->
 					<!--<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>-->
 					<!--<div id="subPages" class="collapse ">-->

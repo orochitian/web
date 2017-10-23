@@ -54,7 +54,7 @@ router.post('/editCategory', function (req, res) {
 router.get('/deleteCategory', function (req, res) {
     story.remove({category:req.query.category}, function () {});
     storyCategory.remove({_id : req.query.sid}, function (err) {
-        res.redirect('/manage/story');
+        res.redirect('/manage/story?page=' + req.query.page);
     });
 });
 

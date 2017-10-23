@@ -1,0 +1,56 @@
+{% extends "./template.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/fileUpload/css/fileinput.min.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="panel">
+	<div class="panel-heading">
+		<h3>{{title}}</h3>
+	</div>
+	<div class="panel-body">
+		<p><a href="/manage/slide/index" class="btn btn-info">轮播图管理</a></p>
+		<div class="form-group">
+			<div class="file-loading">
+				<input id="uploader" multiple type="file" class="">
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="/static/fileUpload/js/fileinput.min.js"></script>
+<script src="/static/fileUpload/js/locales/zh.js"></script>
+<script>
+	$(function () {
+		// 文件上传框
+        $('#uploader').fileinput({
+            theme: 'fa',
+            uploadUrl: 'http://127.0.0.1:8080/test',
+            language : 'zh',
+            allowedPreviewTypes : [ 'image' ],
+            allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+            maxFileSize : 2000,
+            maxFilesNum : 5,
+            fileType: "any",
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            overwriteInitial: false,
+            initialPreviewAsData: true,
+            initialPreview: [
+                "http://lorempixel.com/1920/1080/transport/1",
+                "http://lorempixel.com/1920/1080/transport/2",
+                "http://lorempixel.com/1920/1080/transport/3"
+            ],
+            initialPreviewConfig: [
+                {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
+                {caption: "transport-2.jpg", size: 872378, width: "120px", url: "{$url}", key: 2},
+                {caption: "transport-3.jpg", size: 632762, width: "120px", url: "{$url}", key: 3}
+            ]
+        });
+	})
+</script>
+{% endblock %}
