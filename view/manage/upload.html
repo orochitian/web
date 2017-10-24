@@ -34,23 +34,32 @@
             language : 'zh',
             allowedPreviewTypes : [ 'image' ],
             allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
-            maxFileSize : 2000,
+            maxFileSize : 20000,
             maxFilesNum : 5,
             fileType: "any",
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             overwriteInitial: false,
             initialPreviewAsData: true,
-            initialPreview: [
-                "http://lorempixel.com/1920/1080/transport/1",
-                "http://lorempixel.com/1920/1080/transport/2",
-                "http://lorempixel.com/1920/1080/transport/3"
-            ],
-            initialPreviewConfig: [
-                {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
-                {caption: "transport-2.jpg", size: 872378, width: "120px", url: "{$url}", key: 2},
-                {caption: "transport-3.jpg", size: 632762, width: "120px", url: "{$url}", key: 3}
-            ]
+            showAjaxErrorDetails : 'haha',
+//            initialPreview: [
+//                'http://127.0.0.1:8080/uploadSource/slider/upload_09a1bfd41fdd31f0f8a782042cdcef27',
+//                'http://127.0.0.1:8080/uploadSource/slider/upload_32c5b92b2d00d47c2347329312ad69c5'
+//            ],
+//            initialPreviewConfig: [
+//                {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
+//                {caption: "transport-2.jpg", size: 872378, width: "120px", url: "{$url}", key: 2},
+//            ],
+            fileActionSettings : {
+                showDrag : false
+			}
         });
+        $('#uploader').on('fileuploaded', function(event, data, previewId, index) {
+            console.log(event);
+            event.type = 'fileuploaderror';
+        });
+        $('#uploader').on('fileuploaderror', function (event, data, msg) {
+            console.log(data)
+		})
 	})
 </script>
 {% endblock %}

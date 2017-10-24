@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var fileUpload = require('./router/fileUpload');
 var app = express();
-var formidable = require('formidable');
 
 app.use( require('body-parser').urlencoded({extended : true}) );
 
@@ -14,6 +14,7 @@ require('nunjucks').configure('./view', {
 });
 
 app.use('/static', express.static(__dirname + '/static'));
+app.use('/uploadSource', express.static(__dirname + '/uploadSource'));
 
 app.use('/ueditor', require('./router/ueditor'));
 
@@ -23,12 +24,10 @@ app.use(function (req, res, next) {
 });
 
 app.post('/test', function (req, res, next) {
-    var form = new formidable.IncomingForm();
-    form.uploadDir = __dirname + '/upload/slider';
-    form.parse(req, function (err, fileds, files) {
-        console.log(fileds);
+    fileUpload(req, res, {
+        uploadDir : __dirname + '/uploadSource/slider',
+        maxSize : 2097152
     });
-    res.json({});
 });
 app.get('/upload', function (req, res) {
     res.render('manage/upload.html', {
@@ -41,7 +40,6 @@ app.use('/manage', require('./router/manage'));
 app.use('*', function (req, res) {
     res.send('<h3>页面没找到，你说尴尬不尴尬？</h3>');
 });
-
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/web', {useMongoClient : true}, function (err) {
     if( err ) {
