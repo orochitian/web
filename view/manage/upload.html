@@ -11,10 +11,9 @@
 		<h3>{{title}}</h3>
 	</div>
 	<div class="panel-body">
-		<p><a href="/manage/slide/index" class="btn btn-info">轮播图管理</a></p>
 		<div class="form-group">
 			<div class="file-loading">
-				<input id="uploader" multiple type="file" class="">
+				<input id="uploader" type="file" class="">
 			</div>
 		</div>
 	</div>
@@ -29,29 +28,16 @@
 	$(function () {
 		// 文件上传框
         $('#uploader').fileinput({
-            theme: 'fa',
             uploadUrl: 'http://127.0.0.1:8080/test',
             language : 'zh',
             allowedPreviewTypes : [ 'image' ],
             allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
             maxFileSize : 20000,
-            maxFilesNum : 5,
+            maxFilesNum : 1,
             fileType: "any",
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             overwriteInitial: false,
-            initialPreviewAsData: true,
-            showAjaxErrorDetails : 'haha',
-//            initialPreview: [
-//                'http://127.0.0.1:8080/uploadSource/slider/upload_09a1bfd41fdd31f0f8a782042cdcef27',
-//                'http://127.0.0.1:8080/uploadSource/slider/upload_32c5b92b2d00d47c2347329312ad69c5'
-//            ],
-//            initialPreviewConfig: [
-//                {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
-//                {caption: "transport-2.jpg", size: 872378, width: "120px", url: "{$url}", key: 2},
-//            ],
-            fileActionSettings : {
-                showDrag : false
-			}
+            msgUploadError : '上传失败'
         });
         $('#uploader').on('fileuploaded', function(event, data, previewId, index) {
             console.log(event);
@@ -59,7 +45,7 @@
         });
         $('#uploader').on('fileuploaderror', function (event, data, msg) {
             console.log(data)
-		})
+		});
 	})
 </script>
 {% endblock %}

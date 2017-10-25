@@ -14,19 +14,19 @@ function fileUpload (req, res, options) {
 
     form.on('fileBegin', function (name, file) {
         if(form.bytesExpected > maxSize) {
-            this.emit('error', '文件超过大小限制');
+            this.emit('error', '文件大小超过限制');
         } else {
             res.json({});
         }
     });
     form.on('error', function (message) {
         if( message ) {
-            res.status(413).json({
-                err : message
+            res.json({
+                error : message
             });
         } else {
             res.json({
-                err : '上传失败，请重新上传。'
+                error : '上传失败，请重新上传。'
             });
         }
     });

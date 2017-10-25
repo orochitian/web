@@ -6,7 +6,8 @@ function render(res, data) {
 
 router.get('/index', function (req, res) {
     render(res, {
-        title : '首页轮播管理'
+        title : '首页',
+        link : '/manage'
     });
 });
 

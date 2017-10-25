@@ -14,6 +14,7 @@ require('nunjucks').configure('./view', {
 });
 
 app.use('/static', express.static(__dirname + '/static'));
+
 app.use('/uploadSource', express.static(__dirname + '/uploadSource'));
 
 app.use('/ueditor', require('./router/ueditor'));
