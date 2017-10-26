@@ -1,48 +1,41 @@
 $(function () {
-    //  异步验证
-    $.fn.remote = function (url) {
-        var validOption = {
-            trigger : 'change',
-            //  验证字段
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                name: {
-                    validators: {
-                        notEmpty: {
-                            message: '分类名称不能为空。'
-                        },
-                        remote: {
-                            url: url,
-                            message: "分类已存在。",
-                            type: "post",
-                            dataType: 'json',
-                            data : {
-                                sid : function () {
-                                    return $('#edit-modal').find('[name="id"]').val()
-                                }
-                            },
-                            delay: 500,
-                        }
+    $('#addCategory').bootstrapValidator({
+        // trigger : 'change',
+        //  验证字段
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            image: {
+                validators: {
+                    notEmpty: {
+                        message: '没图你传个鸡巴。'
                     }
                 }
             }
         }
-        return this.bootstrapValidator(validOption);
-    }
-
-    //  添加分类
+    });
+    //  添加轮播
     $.fn.addCategory = function (url) {
         return this.click(function () {
             $('#add-modal').modal({
                 backdrop : 'static'
             });
-            $('#addCategory').remote(url);
         });
     }
+    //  关闭刷新整个模态框
+    $('#add-modal').on('hidden.bs.modal', function () {
+        var $this = $(this);
+        $this.find('[name="title"]').val() ? $this.find('[name="title"]').val('') : '';
+        $this.find('[name="describe"]').val() ? $this.find('[name="describe"]').val('') : '';
+        $this.find('#uploader').fileinput('unlock').fileinput('clear');
+    });
+    $('[type="submit"]').click(function () {
+        console.log($('#uploader').val());
+        return false;
+    });
     //  编辑分类
     $.fn.editCategory = function (url) {
         var $modal = $('#edit-modal');
