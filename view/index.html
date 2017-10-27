@@ -75,6 +75,15 @@
             </div>
         </nav>
         <div id="owl-hero" class="owl-carousel owl-theme">
+            {% for slide in slider %}
+            <div class="item" style="background: url({{slide.imgPath}})">
+                <div class="caption">
+                    <h6>{{slide.imgPath}}</h6>
+                    <h1>We Are <span>Rise</span></h1>
+                    <a class="btn btn-transparent" href="#">Learn More</a><a class="btn btn-light" href="#">Buy Now</a>
+                </div>
+            </div>
+            {% endfor %}
             <div class="item" style="background-image: url(/static/images/sliders/Slide.jpg)">
                 <div class="caption">
                     <h6>Branding / Design / Creativty</h6>

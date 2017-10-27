@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var Welcome = require('../../model/welcome');
 var storyCategory = require('../../model/storyCategory');
+var slider = require('../../model/slider');
 
 router.use(function (req, res, next) {
     req.pageInfo = {};
@@ -8,13 +9,18 @@ router.use(function (req, res, next) {
 });
 
 router.get('/', function (req, res) {
-    Welcome.findOne().then(function (info) {
+    var promise = Welcome.findOne().then(function (info) {
         req.pageInfo.welcome = info;
     });
-    storyCategory.find().then(function (info) {
-        req.pageInfo.story = info;
-        res.render('index.html', req.pageInfo);
+    promise = promise.then(function () {
+        storyCategory.find().then(function (info) {
+            req.pageInfo.story = info;
+        });
     });
+    slider.find({category:'index'}).then(function (info) {
+        req.pageInfo.slider = info;
+    });
+    res.render('index.html', req.pageInfo);
 });
 
 

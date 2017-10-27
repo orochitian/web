@@ -20,46 +20,25 @@
             <thead>
             <tr class="info">
                 <td width="400">图片预览</td>
-                <td>上传日期</td>
+                <td>图片名称</td>
                 <td>图片大小</td>
                 <td width="300">操作</td>
             </tr>
             </thead>
             <tbody>
+            {% for slider in sliders %}
             <tr>
-                <td><img src="/static/manage/img/profile-bg.png" class="img-preview" alt=""></td>
-                <td>2017-10-17</td>
-                <td>1000kb</td>
+                <td><img src="{{slider.imgPath}}" class="img-preview"></td>
+                <td>{{slider.imgName}}</td>
+                <td>{{slider.imgSize}}</td>
                 <td>
                     <a href="#" class="btn btn-primary">编辑</a>&nbsp;&nbsp;
                     <a href="#" class="btn btn-danger">删除</a>
                 </td>
             </tr>
+            {% endfor %}
             </tbody>
         </table>
-        <nav>
-            <ul class="pagination">
-                {% if pageInfo.page == 1 %}
-                <li class="disabled"><a href="javascript:;"><span>上一页</span></a></li>
-                {% else %}
-                <li><a href="/diary?page={{pageInfo.page-1}}"><span>上一页</span></a></li>
-                {% endif %}
-
-                {% for i in pageInfo.pageArray %}
-                {% if i == pageInfo.page %}
-                <li class="active"><a href="javascript:;">{{i}}</span></a></li>
-                {% else %}
-                <li><a href="/diary?page={{i}}">{{i}}</span></a></li>
-                {% endif %}
-                {% endfor %}
-
-                {% if pageInfo.page >= pageInfo.pageNum %}
-                <li class="disabled"><a href="javascript:;"><span>下一页</span></a></li>
-                {% else %}
-                <li><a href="/diary?page={{pageInfo.page+1}}"><span>下一页</span></a></li>
-                {% endif %}
-            </ul>
-        </nav>
     </div>
 </div>
 {% endblock %}
@@ -68,7 +47,7 @@
 <div id="add-modal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="addCategory" action="/manage/story/addCategory" method="post">
+            <form id="addCategory" action="/manage/slide/addSlider/{{category}}" method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                     <h4 class="modal-title">添加轮播</h4>
@@ -85,9 +64,11 @@
                     <div class="form-group">
                         <div class="file-loading">
                             <input id="uploader" name="image" type="file">
-                            <input type="hidden" name="test">
                         </div>
                     </div>
+                    <input type="hidden" name="imgPath">
+                    <input type="hidden" name="imgName">
+                    <input type="hidden" name="imgSize">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info">添加</button>
@@ -97,48 +78,12 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block script %}
-<script src="https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
 <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
 <script src="/static/fileUpload/js/fileinput.min.js"></script>
 <script src="/static/fileUpload/js/locales/zh.js"></script>
 <script src="/static/manage/slider.js"></script>
-<script>
-    $(function () {
-        // 文件上传框
-        var $uploader = $('#uploader');
-        $uploader.fileinput({
-            uploadUrl: 'http://127.0.0.1:8080/test',
-            language : 'zh',
-            allowedPreviewTypes : [ 'image' ],
-            allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
-            maxFileSize : 2000,
-            maxFilesNum : 1,
-            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-            overwriteInitial: false,
-            msgUploadError : '上传失败',
-            autoReplace : true,
-            showUpload : false,
-            layoutTemplates : {
-                actionDelete : ''
-            }
-        });
-        $uploader.on('fileuploaded', function(event, data, previewId, index) {
-            console.log('1')
-            setTimeout(function () {
-                $('.kv-file-remove').attr('disabled', true);
-                $('.fileinput-remove').remove();
-                $uploader.attr('disabled', true).parents('.btn-file').addClass('disabled');
-            }, 100);
-        });
-        $uploader.on('fileuploaderror', function (event, data, msg) {
-            console.log(data)
-        });
-        $uploader.on('filecleared', function () {
-            $uploader.trigger('change');
-        });
-    })
-</script>
 {% endblock %}

@@ -15,8 +15,6 @@ function fileUpload (req, res, options) {
     form.on('fileBegin', function (name, file) {
         if(form.bytesExpected > maxSize) {
             this.emit('error', '文件大小超过限制');
-        } else {
-            res.json({});
         }
     });
     form.on('error', function (message) {
@@ -34,6 +32,13 @@ function fileUpload (req, res, options) {
         if( file.size > maxSize ) {
             fs.unlink(file.path);
         }
+        var path = file.path.replace(/\\/g, '/');
+        res.json({
+            name : file.name,
+            path : '/' + path,
+            size : file.size
+        });
+        // fs.rename(file.path, './uploadSource/slider/' + file.name);
     });
     form.parse(req);
 }

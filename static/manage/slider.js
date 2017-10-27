@@ -1,22 +1,46 @@
 $(function () {
-    $('#addCategory').bootstrapValidator({
-        // trigger : 'change',
-        //  验证字段
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            image: {
-                validators: {
-                    notEmpty: {
-                        message: '没图你传个鸡巴。'
-                    }
-                }
-            }
+    // 文件上传框
+    var $uploader = $('#uploader');
+    $uploader.fileinput({
+        uploadUrl: 'http://127.0.0.1:8080/test',
+        language : 'zh',
+        allowedPreviewTypes : [ 'image' ],
+        allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+        maxFileSize : 2000,
+        maxFilesNum : 1,
+        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        overwriteInitial: false,
+        msgUploadError : '上传失败',
+        autoReplace : true,
+        showUpload : false,
+        layoutTemplates : {
+            actionDelete : '',
+            actionUpload : ''
         }
     });
+    $uploader.on('fileuploaded', function (event, data, previewId, index) {
+        $('#addCategory').find('[name="imgPath"]').val(data.response.path);
+        $('#addCategory').find('[name="imgName"]').val(data.response.name);
+        $('#addCategory').find('[name="imgSize"]').val(data.response.size);
+        setTimeout(function () {
+            $('#addCategory').submit();
+        }, 500);
+    });
+    $uploader.on('filecleared', function () {
+        $uploader.trigger('change');
+    });
+    $('.btn-info:submit').on('click', function (e) {
+        e.preventDefault();
+        $uploader.fileinput('upload');
+    });
+    //  关闭刷新整个模态框
+    $('#add-modal').on('hidden.bs.modal', function () {
+        var $this = $(this);
+        $this.find('[name="title"]').val('')
+        $this.find('[name="describe"]').val('')
+        $this.find('#uploader').fileinput('unlock').fileinput('clear');
+    });
+
     //  添加轮播
     $.fn.addCategory = function (url) {
         return this.click(function () {
@@ -25,17 +49,6 @@ $(function () {
             });
         });
     }
-    //  关闭刷新整个模态框
-    $('#add-modal').on('hidden.bs.modal', function () {
-        var $this = $(this);
-        $this.find('[name="title"]').val() ? $this.find('[name="title"]').val('') : '';
-        $this.find('[name="describe"]').val() ? $this.find('[name="describe"]').val('') : '';
-        $this.find('#uploader').fileinput('unlock').fileinput('clear');
-    });
-    $('[type="submit"]').click(function () {
-        console.log($('#uploader').val());
-        return false;
-    });
     //  编辑分类
     $.fn.editCategory = function (url) {
         var $modal = $('#edit-modal');
@@ -52,8 +65,8 @@ $(function () {
             return false;
         });
     }
-    $('.add-btn').addCategory('/manage/story/storyAddCategoryExists');
-    $('.edit-btn').editCategory('/manage/story/storyEditCategoryExists');
+    $('.add-btn').addCategory();
+    $('.edit-btn').editCategory();
 
     $('.delete-btn').click(function () {
         var href = $(this).attr('href');

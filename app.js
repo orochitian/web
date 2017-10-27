@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
 
 app.post('/test', function (req, res, next) {
     fileUpload(req, res, {
-        uploadDir : __dirname + '/uploadSource/slider',
+        uploadDir : './uploadSource/slider',
         maxSize : 2097152
     });
 });
@@ -41,6 +41,7 @@ app.use('/manage', require('./router/manage'));
 app.use('*', function (req, res) {
     res.send('<h3>页面没找到，你说尴尬不尴尬？</h3>');
 });
+
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/web', {useMongoClient : true}, function (err) {
     if( err ) {
