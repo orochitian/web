@@ -19,9 +19,9 @@
         <table class="table table-bordered table-hover text-center">
             <thead>
             <tr class="info">
-                <td width="400">图片预览</td>
+                <td width="300">图片预览</td>
                 <td>图片名称</td>
-                <td>图片大小</td>
+                <td width="100">图片大小</td>
                 <td width="300">操作</td>
             </tr>
             </thead>
@@ -33,7 +33,7 @@
                 <td>{{slider.imgSize}}</td>
                 <td>
                     <a href="#" class="btn btn-primary">编辑</a>&nbsp;&nbsp;
-                    <a href="#" class="btn btn-danger">删除</a>
+                    <a href="/manage/slide/deleteSlider/{{category}}/{{slider._id}}" class="btn btn-danger delete-btn">删除</a>
                 </td>
             </tr>
             {% endfor %}
@@ -69,6 +69,7 @@
                     <input type="hidden" name="imgPath">
                     <input type="hidden" name="imgName">
                     <input type="hidden" name="imgSize">
+                    <input type="hidden" name="imgHash">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info">添加</button>

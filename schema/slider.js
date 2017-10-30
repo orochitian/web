@@ -5,7 +5,8 @@ var slider_schema = new mongoose.Schema({
     category : String,
     imgPath : String,
     imgName : String,
-    imgSize : String
+    imgSize : String,
+    imgHash : String
 }, {
     timestamps : {
         createdAt : 'created_at',

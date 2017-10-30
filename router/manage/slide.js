@@ -24,8 +24,16 @@ router.post('/addSlider/:category', function (req, res) {
         category : req.params.category,
         imgPath : req.body.imgPath,
         imgName : req.body.imgName,
-        imgSize : req.body.imgSize
+        imgSize : req.body.imgSize,
+        imgHash : req.body.imgHash
     }, function () {
+        res.redirect('/manage/slide/' + req.params.category);
+    });
+});
+
+//  删除轮播
+router.get('/deleteSlider/:category/:id', function (req, res) {
+    slider.findByIdAndRemove(req.params.id, function (err) {
         res.redirect('/manage/slide/' + req.params.category);
     });
 });
