@@ -10,4 +10,10 @@ router.use('/', require('./manage/index'));
 //  故事
 router.use('/story', require('./manage/story'));
 
+//  博客
+router.use('/blog', require('./manage/blog'));
+
+//  工作
+router.use('/work', require('./manage/work'));
+
 module.exports = router;

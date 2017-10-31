@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var slider = require('../../model/slider');
-
+var fileUpload = require('../fileUpload');
 function render(res, data) {
     res.render('manage/slide.html', data);
 }
@@ -13,6 +13,25 @@ router.get('/index', function (req, res) {
             category : 'index',
             sliders : sliders
         });
+    });
+});
+
+router.get('/story', function (req, res) {
+    slider.find({category:'story'}, function (err, sliders) {
+        render(res, {
+            title : '故事',
+            link : '/manage/story',
+            category : 'story',
+            sliders : sliders
+        });
+    });
+});
+
+//  上传
+router.post('/upload', function (req, res, next) {
+    fileUpload(req, res, {
+        uploadDir : './uploadSource/slider',
+        maxSize : 2097152
     });
 });
 

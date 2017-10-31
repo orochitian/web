@@ -14,13 +14,6 @@ $(function () {
                         message: '标题不能为空。'
                     }
                 }
-            },
-            content: {
-                validators: {
-                    notEmpty: {
-                        message: '标题不能为空。'
-                    }
-                }
             }
         }
     });

@@ -35,12 +35,13 @@ $(function () {
     }
 
     //  添加分类
-    $.fn.addCategory = function (url) {
+    $.fn.addCategory = function () {
         return this.click(function () {
             $('#add-modal').modal({
                 backdrop : 'static'
             });
-            $('#addCategory').remote(url);
+            $('#addCategory').remote(this);
+            return false;
         });
     }
     //  编辑分类
@@ -55,12 +56,13 @@ $(function () {
             $modal.modal({
                 backdrop : 'static'
             });
-            $('#editCategory').remote(url);
+            $('#editCategory').remote(this);
             return false;
         });
     }
-    $('.add-btn').addCategory('/manage/story/storyAddCategoryExists');
-    $('.edit-btn').editCategory('/manage/story/storyEditCategoryExists');
+
+    $('.add-btn').addCategory();
+    $('.edit-btn').editCategory();
 
     $('.delete-btn').click(function () {
         var href = $(this).attr('href');

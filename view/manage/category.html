@@ -10,8 +10,8 @@
 	</div>
 	<div class="panel-body">
 		<p>
-			<a href="/manage/slide/story" class="btn btn-info">轮播图管理</a>&nbsp;&nbsp;
-			<a href="javascript:;" class="btn btn-info add-btn">添加分类</a>
+			<a href="/manage/slide/{{category}}" class="btn btn-info">轮播图管理</a>&nbsp;&nbsp;
+			<a href="/manage/{{category}}/addCategoryExists" class="btn btn-info add-btn">添加分类</a>
 		</p>
 		<table class="table table-bordered table-hover text-center">
 			<thead>
@@ -25,12 +25,12 @@
 			<tbody>
 			{% for data in datas %}
 			<tr>
-				<td><a href="/manage/story/{{data.name}}">{{data.name}}</a></td>
+				<td><a href="/manage/{{category}}/{{data.name}}">{{data.name}}</a></td>
 				<td>{{data.describe}}</td>
 				<td>{{data.childNum}}</td>
 				<td>
-					<a href="javascript:;" id="{{data._id}}" name="{{data.name}}" describe="{{data.describe}}" password="{{data.password}}" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
-					<a href="/manage/story/deleteCategory?sid={{data._id}}&category={{data.name}}&page={{pageInfo.page}}" class="btn btn-danger delete-btn">删除</a>
+					<a href="/manage/{{category}}/editCategoryExists" id="{{data._id}}" name="{{data.name}}" describe="{{data.describe}}" password="{{data.password}}" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
+					<a href="/manage/{{category}}/deleteCategory?sid={{data._id}}&category={{data.name}}&page={{pageInfo.page}}" class="btn btn-danger delete-btn">删除</a>
 				</td>
 			</tr>
 			{% endfor %}
@@ -41,21 +41,21 @@
 				{% if pageInfo.page == 1 %}
 				<li class="disabled"><a href="javascript:;"><span>上一页</span></a></li>
 				{% else %}
-				<li><a href="/manage/story?page={{pageInfo.page-1}}"><span>上一页</span></a></li>
+				<li><a href="/manage/{{category}}?page={{pageInfo.page-1}}"><span>上一页</span></a></li>
 				{% endif %}
 
 				{% for i in pageInfo.pageArray %}
 				{% if i == pageInfo.page %}
 				<li class="active"><a href="javascript:;">{{i}}</span></a></li>
 				{% else %}
-				<li><a href="/manage/story?page={{i}}">{{i}}</span></a></li>
+				<li><a href="/manage/{{category}}?page={{i}}">{{i}}</span></a></li>
 				{% endif %}
 				{% endfor %}
 
 				{% if pageInfo.page >= pageInfo.pageNum %}
 				<li class="disabled"><a href="javascript:;"><span>下一页</span></a></li>
 				{% else %}
-				<li><a href="/manage/story?page={{pageInfo.page+1}}"><span>下一页</span></a></li>
+				<li><a href="/manage/{{category}}?page={{pageInfo.page+1}}"><span>下一页</span></a></li>
 				{% endif %}
 			</ul>
 		</nav>
@@ -67,7 +67,7 @@
 <div id="add-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form id="addCategory" action="/manage/story/addCategory" method="post">
+			<form id="addCategory" action="/manage/{{category}}/addCategory" method="post">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 					<h4 class="modal-title">添加故事分类</h4>
@@ -98,7 +98,7 @@
 <div id="edit-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form id="editCategory" action="/manage/story/editCategory" method="post">
+			<form id="editCategory" action="/manage/{{category}}/editCategory" method="post">
 				<input type="hidden" name="id" value="">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>

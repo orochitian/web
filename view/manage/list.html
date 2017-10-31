@@ -5,29 +5,32 @@
 <div class="panel">
 	<div class="panel-heading">
 		<ol class="breadcrumb">
-			<li><a href="/manage/story">故事管理</a></li>
+			<li><a href="/manage/{{category}}">{{categoryName}}管理</a></li>
 			<li class="active">{{title}}</li>
 		</ol>
 	</div>
 	<div class="panel-body">
 		<p>
-			<a href="/manage/story/{{category}}/addStory" class="btn btn-info">写故事</a>
+			<a href="/manage/{{category}}/{{title}}/add" class="btn btn-info">写{{categoryName}}</a>
 		</p>
 		<table class="table table-bordered table-hover text-center">
 			<thead>
 			<tr class="info">
-				<td>文章标题</td>
-				<td>文章概述</td>
-				<td width="200">创建日期</td>
+				<td>标题</td>
+				<td>概述</td>
+				<td width="200">日期</td>
 				<td width="220">编辑</td>
 			</tr>
 			</thead>
 			<tbody>
 			{% for data in datas %}
 			<tr>
-				<td title="{{data.title}}"><a href="/manage/story/{{category}}">{{data.title}}</a></td>
+				<td title="{{data.title}}"><a href="/manage/{{title}}/{{category}}">{{data.title}}</a></td>
 				<td title="{{data.preview}}">{{data.preview}}</td>
 				<td>
+					{% if data.date %}
+					{{data.date}}
+					{% else %}
 					{{data.created_at.getFullYear()}}年
 					{{data.created_at.getMonth()+1}}月
 					{{data.created_at.getDate()}}日&nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,10 +44,11 @@
 					{% else %}
 					0{{data.created_at.getMinutes()}}
 					{% endif %}
+					{% endif %}
 				</td>
 				<td>
-					<a href="/manage/story/{{category}}/editStory/{{data._id}}" class="btn btn-info">编辑</a>&nbsp;&nbsp;
-					<a href="/manage/story/{{category}}/deleteStory/{{data._id}}" class="btn btn-danger delete-btn">删除</a>
+					<a href="/manage/{{category}}/{{title}}/edit/{{data._id}}" class="btn btn-info">编辑</a>&nbsp;&nbsp;
+					<a href="/manage/{{category}}/{{title}}/delete/{{data._id}}" class="btn btn-danger delete-btn">删除</a>
 				</td>
 			</tr>
 			{% endfor %}

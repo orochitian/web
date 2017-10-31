@@ -1785,3 +1785,11 @@ table td {
   background-color: #fff;
   margin-bottom: 0;
 }
+
+/* datepicker style */
+.datepicker{
+  width: 400px;
+}
+.table-condensed{
+  width: 390px;
+}

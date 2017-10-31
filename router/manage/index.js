@@ -5,6 +5,7 @@ router.get('/', function (req, res) {
     Welcome.findOne(function (err, info) {
         res.render('manage/index.html', {
             title : '首页',
+            categoryName : '首页',
             welcome : info
         });
     });

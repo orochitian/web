@@ -2,7 +2,7 @@ $(function () {
     // 文件上传框
     var $uploader = $('#uploader');
     $uploader.fileinput({
-        uploadUrl: 'http://127.0.0.1:8080/test',
+        uploadUrl: 'http://127.0.0.1:8080/manage/slide/upload',
         language : 'zh',
         allowedPreviewTypes : [ 'image' ],
         allowedFileExtensions : [ 'jpg', 'png', 'gif' ],

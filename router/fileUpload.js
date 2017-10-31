@@ -1,6 +1,6 @@
 var fs = require('fs');
-var slider = require('../model/slider');
 var formidable = require('formidable');
+var uploadSource = require('../model/uploadSource');
 
 function fileUpload (req, res, options) {
     if ( !req || !res || !options || !options.uploadDir ) {
@@ -14,22 +14,6 @@ function fileUpload (req, res, options) {
 
     var maxSize = options.maxSize || 2097152;  //  默认文件最大2M
 
-    // form.on('fileBegin', function (name, file) {
-    //     if(form.bytesExpected > maxSize) {
-    //         this.emit('error', '文件大小超过限制');
-    //     }
-    // });
-    // form.on('error', function (message) {
-    //     if( message ) {
-    //         res.json({
-    //             error : message
-    //         });
-    //     } else {
-    //         res.json({
-    //             error : '上传失败，请重新上传。'
-    //         });
-    //     }
-    // });
     form.on('file', function (name, file) {
         if( file.size > maxSize ) {
             fs.unlink(file.path);
@@ -38,28 +22,23 @@ function fileUpload (req, res, options) {
             });
             return;
         }
-        slider.findOne({imgHash:file.hash}, function (err, data) {
+        var path = '/' + file.path.replace(/\\/g, '/');
+        var sourceData = {
+            name : file.name,
+            path : path,
+            size : file.size,
+            hash : file.hash
+        }
+        uploadSource.findOne({hash:file.hash}, function (err, data) {
             if( data ) {
-                console.log('已存在');
                 fs.unlink(file.path);
-                res.json({
-                    name : file.name,
-                    path : data.imgPath,
-                    size : file.size,
-                    hash : file.hash
-                });
+                sourceData.path = data.path;
+                res.json(sourceData);
             } else {
-                console.log('新图片');
-                var path = file.path.replace(/\\/g, '/');
-                res.json({
-                    name : file.name,
-                    path : '/' + path,
-                    size : file.size,
-                    hash : file.hash
-                });
+                uploadSource.create(sourceData);
+                res.json(sourceData);
             }
         });
-        // fs.rename(file.path, './uploadSource/slider/' + file.name);
     });
     form.parse(req);
 }

@@ -1,0 +1,77 @@
+{% extends "./template.html" %}
+
+{% if date %}
+	{% block style %}
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
+	{% endblock %}
+{% endif %}
+
+{% block content %}
+
+<div class="panel">
+	<div class="panel-heading">
+		<ol class="breadcrumb">
+			<li><a href="/manage/{{parent}}">{{categoryName}}管理</a></li>
+			<li><a href="/manage/{{parent}}/{{category}}">{{category}}</a></li>
+			<li class="active">写{{categoryName}}</li>
+		</ol>
+	</div>
+	<div class="panel-body">
+		<div class="col-lg-10 col-lg-offset-1">
+			<form id="form-valid" class="form-horizontal" action="/manage/{{parent}}/{{category}}/add" method="post">
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon">标题</span>
+						<input id="title" name="title" class="form-control" type="text">
+					</div>
+				</div>
+				{% if date %}
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon">日期</span>
+						<input class="form-control" type="text" name="date" value="{{date}}" readonly>
+					</div>
+				</div>
+				{% endif %}
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon">概述</span>
+						<textarea class="form-control" name="preview" id="preview" rows="2"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<script id="web-ueditor" name="content" type="text/plain"></script>
+				</div>
+				<div class="form-group text-center">
+					<button type="submit" class="btn btn-info">保存</button>&nbsp;&nbsp;
+					<a href="javascript: history.back();" class="btn btn-default">返回</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+{% include './ueditor.html' %}
+<script src="https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+{% if date %}
+<script src="https://cdn.bootcss.com/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<script>
+	$(function () {
+        $('#form-valid').find('input[name="date"]').datepicker({
+            format : 'yyyy-mm-dd',
+            language : 'zh-CN',
+            autoclose : true,
+            todayBtn : 'linked',
+            todayHighlight : true,
+            clearBtn : true,
+            zIndexOffset : 9999
+        });
+	});
+</script>
+{% endif %}
+<script src="/static/manage/article_valid.js"></script>
+{% endblock %}

@@ -1,6 +1,5 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var fileUpload = require('./router/fileUpload');
 var app = express();
 
 app.use( require('body-parser').urlencoded({extended : true}) );
@@ -24,17 +23,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.post('/test', function (req, res, next) {
-    fileUpload(req, res, {
-        uploadDir : './uploadSource/slider',
-        maxSize : 2097152
-    });
-});
-app.get('/upload', function (req, res) {
-    res.render('manage/upload.html', {
-        title : '上传'
-    });
-});
 app.use('/', require('./router/client'));
 app.use('/manage', require('./router/manage'));
 
