@@ -6,7 +6,7 @@ $(function () {
         language : 'zh',
         allowedPreviewTypes : [ 'image' ],
         allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
-        maxFileSize : 20000,
+        maxFileSize : 5000,
         maxFilesNum : 1,
         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
         overwriteInitial: false,
@@ -39,30 +39,12 @@ $(function () {
         $this.find('[name="describe"]').val('')
         $this.find('#uploader').fileinput('unlock').fileinput('clear');
     });
-
-    //  编辑分类
-    $.fn.editCategory = function (url) {
-        var $modal = $('#edit-modal');
-        return this.on('click', function () {
-            var $this = $(this);
-            $modal.find('[name="name"]').val( $this.attr('name') );
-            $modal.find('[name="describe"]').val( $this.attr('describe') );
-            $modal.find('[name="password"]').val( $this.attr('password') );
-            $modal.find('[name="id"]').val( $this.attr('id') );
-            $modal.modal({
-                backdrop : 'static'
-            });
-            $('#editCategory').remote(url);
-            return false;
-        });
-    }
+    //  添加轮播
     $('.add-btn').click(function () {
         $('#add-modal').modal({
             backdrop : 'static'
         });
-    })
-    $('.edit-btn').editCategory();
-
+    });
     $('.delete-btn').click(function () {
         var href = $(this).attr('href');
         layer.confirm('删除轮播并不会同时删除图片。<br>确认删除？', {

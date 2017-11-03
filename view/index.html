@@ -50,7 +50,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="/static/images/logo/logo.png" class="img-responsive" alt="logo"></a>
+                    <!--<a class="navbar-brand" href="#"><img src="/static/images/logo/logo.png" class="img-responsive" alt="logo"></a>-->
+                    <a class="navbar-brand" href="/" style="font-size: 30px; font-weight: bold; color: #fff; line-height: 60px">Rya Lee</a>
                 </div>
                 <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
                     <div class="col-md-8 col-xs-12 nav-wrap">
@@ -66,9 +67,9 @@
                     </div>
                     <div class="social-media hidden-sm hidden-xs">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-weixin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-qq"></i></a></li>
-                            <li><a href="#"><i class="fa fa-weibo"></i></a></li>
+                            <li><a href="javascript:;"><i class="fa fa-weixin"></i></a></li>
+                            <li><a href="javascript:;"><i class="fa fa-qq"></i></a></li>
+                            <li><a href="javascript:;"><i class="fa fa-weibo"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -79,8 +80,8 @@
             <div class="item" style="background: url({{slide.imgPath}}) no-repeat center; background-size: 100%">
                 <div class="caption">
                     <h6>{{slide.title}}</h6>
-                    <h1>We Are <span>Rise</span></h1>
-                    <a class="btn btn-transparent" href="#">Learn More</a><a class="btn btn-light" href="#">Buy Now</a>
+                    <h1>{{slide.describe}}</h1>
+                    <!--<a class="btn btn-transparent" href="#">Learn More</a><a class="btn btn-light" href="#">Buy Now</a>-->
                 </div>
             </div>
             {% endfor %}
@@ -108,12 +109,14 @@
             <div class="story-box">
                 <div class="row wow fadeInUp" data-wow-delay=".3s">
                     {% for item in story %}
+                    {% if item.show === '是' %}
                     <div class="col-md-4">
                         <div class="media-body">
                             <h3><a href="/story/{{item.name}}">{{item.name}}</a></h3>
                             <p>{{item.describe}}</p>
                         </div>
                     </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -128,34 +131,16 @@
             <hr class="sep">
             <p>技术分类</p>
             <div class="row wow fadeInUp" data-wow-delay=".3s">
+                {% for item in blog %}
+                {% if item.show === '是' %}
                 <div class="col-md-4">
                     <div class="item">
-                        <h4><a href="#">html/css</a></h4>
-                        <p>Designer</p>
+                        <h4><a href="#">{{item.name}}</a></h4>
+                        <p>{{item.describe}}</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <h4><a href="#">javascript</a></h4>
-                        <p>Developer</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <h4><a href="#">node</a></h4>
-                        <p>Photographer</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <h4><a href="#">python</a></h4>
-                        <p>Photographer</p>
-                        <!--<div>-->
-                            <!--<a href="#"><i class="fa fa-edit"></i></a>-->
-                            <!--<a href="#"><i class="fa fa-remove"></i></a>-->
-                        <!--</div>-->
-                    </div>
-                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -315,9 +300,9 @@
         <div class="container">
             <h1>Ryan Lee Blog</h1>
             <div class="social">
-                <a href="#"><i class="fa fa-weixin fa-2x"></i></a>
-                <a href="#"><i class="fa fa-qq fa-2x"></i></a>
-                <a href="#"><i class="fa fa-weibo fa-2x"></i></a>
+                <a href="javascript:;"><i class="fa fa-weixin fa-2x"></i></a>
+                <a href="javascript:;"><i class="fa fa-qq fa-2x"></i></a>
+                <a href="javascript:;"><i class="fa fa-weibo fa-2x"></i></a>
             </div>
             <p class="copy">Copyright &copy; Ryan Lee Blog 2017</p>
         </div>

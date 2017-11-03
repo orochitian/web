@@ -19,12 +19,15 @@
 	<div class="panel-body">
 		<div class="col-lg-10 col-lg-offset-1">
 			<form id="form-valid" class="form-horizontal" action="/manage/{{parent}}/{{category}}/add" method="post">
+				{% if parent !== 'work' %}
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon">标题</span>
 						<input id="title" name="title" class="form-control" type="text">
 					</div>
 				</div>
+				{% endif %}
+
 				{% if date %}
 				<div class="form-group">
 					<div class="input-group">
@@ -33,12 +36,16 @@
 					</div>
 				</div>
 				{% endif %}
+
+				{% if parent !== 'work' %}
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon">概述</span>
 						<textarea class="form-control" name="preview" id="preview" rows="2"></textarea>
 					</div>
 				</div>
+				{% endif %}
+
 				<div class="form-group">
 					<script id="web-ueditor" name="content" type="text/plain"></script>
 				</div>

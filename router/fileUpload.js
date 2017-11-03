@@ -12,13 +12,13 @@ function fileUpload (req, res, options) {
     form.keepExtensions = true;
     form.hash = 'md5';
 
-    var maxSize = options.maxSize || 2097152;  //  默认文件最大2M
+    var maxSize = options.maxSize || 512000;  //  默认文件最大500kb
 
     form.on('file', function (name, file) {
         if( file.size > maxSize ) {
             fs.unlink(file.path);
             res.json({
-                error : '文件大小超过限制'
+                error : '文件大小超过限制，最大' + parseInt(maxSize/1024) + 'kb'
             });
             return;
         }

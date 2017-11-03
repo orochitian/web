@@ -28,7 +28,7 @@ router.post('/addCategory', function (req, res) {
             workCategory.create({
                 name : req.body.name,
                 describe : req.body.describe,
-                password : req.body.password
+                show : req.body.show
             }, function () {
                 res.redirect('/manage/work');
             });
@@ -45,7 +45,7 @@ router.post('/editCategory', function (req, res) {
             workCategory.update({_id : req.body.id}, {
                 name : req.body.name,
                 describe : req.body.describe,
-                password : req.body.password
+                show : req.body.show
             }, function (err, info) {
                 res.redirect('/manage/work');
             });
@@ -119,8 +119,6 @@ router.post('/:name/add', function (req, res) {
         if( info ) {
             workCategory.update({name: req.params.name}, {$inc: { childNum: 1 }}, function() {});
             work.create({
-                title : req.body.title,
-                preview : req.body.preview,
                 category : req.params.name,
                 content : req.body.content,
                 date : req.body.date
@@ -144,8 +142,6 @@ router.get('/:name/edit/:sid', function (req, res) {
                         res.render('manage/edit.html', {
                             categories : categories,
                             category : work.category,
-                            title : work.title,
-                            preview : work.preview,
                             content : work.content,
                             id: work._id,
                             parent : 'work',
@@ -169,8 +165,6 @@ router.post('/:name/edit/:sid', function (req, res) {
             workCategory.update({name: req.params.name}, {$inc: { childNum: -1 }}, function() {});
         }
         work.findOneAndUpdate({_id:req.params.sid}, {
-            title : req.body.title,
-            preview : req.body.preview,
             category : req.body.category,
             content : req.body.content,
             date : req.body.date

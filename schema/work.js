@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 var work_schema = new mongoose.Schema({
-    title : String,
-    preview : String,
     category : String,
     content : String,
     date : String

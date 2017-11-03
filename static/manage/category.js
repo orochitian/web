@@ -53,6 +53,7 @@ $(function () {
             $modal.find('[name="describe"]').val( $this.attr('describe') );
             $modal.find('[name="password"]').val( $this.attr('password') );
             $modal.find('[name="id"]').val( $this.attr('id') );
+            $modal.find('[name="show"]').val( $this.attr('show') );
             $modal.modal({
                 backdrop : 'static'
             });

@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     $("#owl-hero").owlCarousel({
         navigation: true, // Show next and prev buttons
-        slideSpeed: 300,
+        slideSpeed: 500,
         paginationSpeed: 400,
         singleItem: true,
         transitionStyle: "fadeUp",

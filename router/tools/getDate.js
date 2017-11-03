@@ -20,17 +20,32 @@ function getDate (timeStamp, format, info) {
             info ? dateStr += date.getFullYear().toString().substr(2, date.getFullYear().toString().length-1) + info : dateStr += date.getFullYear().toString().substr(2, date.getFullYear().toString().length-1) + '年';
         },
         mm : function (date) {
-            info ? dateStr += date.getMonth()+1 + info : dateStr += date.getMonth()+1 + '月';
+            var month = date.getMonth()+1;
+            if( info ) {
+                if( month < 10 ) {
+                    dateStr += '0' + month + info;
+                } else {
+                    dateStr += month + info;
+                }
+            } else {
+                dateStr += month + '月'
+            }
         },
         dd : function (date) {
-            info ? dateStr += date.getDate() + info : dateStr += date.getDate() + '日';
+            var day = date.getDate();
+            if( info ) {
+                if( day < 10 ) {
+                    dateStr += '0' + day
+                } else {
+                    dateStr += day
+                }
+            } else {
+                dateStr += day + '日'
+            }
         }
     }
     for( i=0; i<formatArr.length; i++ ) {
         formatFn[formatArr[i]](date);
-    }
-    if( info ) {
-        dateStr = dateStr.substr(0, dateStr.length-1)
     }
     return dateStr;
 }

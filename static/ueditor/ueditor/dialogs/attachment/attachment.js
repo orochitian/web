@@ -6,7 +6,6 @@
  */
 
 (function () {
-
     var uploadFile,
         onlineFile;
 

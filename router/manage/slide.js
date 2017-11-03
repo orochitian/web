@@ -11,6 +11,7 @@ router.get('/index', function (req, res) {
             title : '首页',
             link : '/manage',
             category : 'index',
+            categoryName : '首页',
             sliders : sliders
         });
     });
@@ -22,6 +23,7 @@ router.get('/story', function (req, res) {
             title : '故事',
             link : '/manage/story',
             category : 'story',
+            categoryName : '故事',
             sliders : sliders
         });
     });
@@ -30,8 +32,7 @@ router.get('/story', function (req, res) {
 //  上传
 router.post('/upload', function (req, res, next) {
     fileUpload(req, res, {
-        uploadDir : './uploadSource/slider',
-        maxSize : 2097152
+        uploadDir : './uploadSource/slider'
     });
 });
 

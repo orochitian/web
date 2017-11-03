@@ -27,7 +27,7 @@ router.post('/addCategory', function (req, res) {
             storyCategory.create({
                 name : req.body.name,
                 describe : req.body.describe,
-                password : req.body.password
+                show : req.body.show
             }, function () {
                 res.redirect('/manage/story');
             });
@@ -41,12 +41,15 @@ router.post('/editCategory', function (req, res) {
         if( info && info._id != req.body.id ) {
             res.send('分类已存在，你说尴尬不尴尬');
         } else {
-            storyCategory.update({_id : req.body.id}, {
-                name : req.body.name,
-                describe : req.body.describe,
-                password : req.body.password
-            }, function (err, info) {
-                res.redirect('/manage/story');
+            storyCategory.findOne({_id : req.body.id}, function (err, category) {
+                story.update({category:category.name}, {category:req.body.name}, {multi:true}, function () {});
+                storyCategory.update({_id : req.body.id}, {
+                    name : req.body.name,
+                    describe : req.body.describe,
+                    show : req.body.show
+                }, function (err, raw) {
+                    res.redirect('/manage/story');
+                });
             });
         }
     });

@@ -27,7 +27,7 @@ router.post('/addCategory', function (req, res) {
             blogCategory.create({
                 name : req.body.name,
                 describe : req.body.describe,
-                password : req.body.password
+                show : req.body.show
             }, function () {
                 res.redirect('/manage/blog');
             });
@@ -44,7 +44,7 @@ router.post('/editCategory', function (req, res) {
             blogCategory.update({_id : req.body.id}, {
                 name : req.body.name,
                 describe : req.body.describe,
-                password : req.body.password
+                show : req.body.show
             }, function (err, info) {
                 res.redirect('/manage/blog');
             });
