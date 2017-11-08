@@ -1,0 +1,28 @@
+{% extends "./template.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/fileUpload/css/fileinput.min.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="panel">
+	<div class="panel-heading">
+		<ol class="breadcrumb">
+			<li><a href="/manage/photo">相册管理</a></li>
+			<li class="active">{{categoryName}}</li>
+		</ol>
+	</div>
+	<div class="panel-body">
+		<input type="hidden" name="category" value="{{categoryName}}">
+		<input id="uploader" name="image" multiple type="file">
+	</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+<script src="/static/fileUpload/js/fileinput.min.js"></script>
+<script src="/static/fileUpload/js/locales/zh.js"></script>
+<script src="/static/manage/photo_list.js"></script>
+{% endblock %}

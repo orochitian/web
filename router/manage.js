@@ -16,4 +16,10 @@ router.use('/blog', require('./manage/blog'));
 //  工作
 router.use('/work', require('./manage/work'));
 
+//  心情
+router.use('/mood', require('./manage/mood'));
+
+//  心情
+router.use('/photo', require('./manage/photo'));
+
 module.exports = router;

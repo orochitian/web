@@ -2,7 +2,7 @@ $(function () {
     // 文件上传框
     var $uploader = $('#uploader');
     $uploader.fileinput({
-        uploadUrl: 'http://127.0.0.1:8080/manage/slide/upload',
+        uploadUrl: '/manage/photo/category/cover',
         language : 'zh',
         allowedPreviewTypes : [ 'image' ],
         allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
@@ -47,7 +47,7 @@ $(function () {
     });
     $('.delete-btn').click(function () {
         var href = $(this).attr('href');
-        layer.confirm('删除轮播并不会同时删除图片。<br>确认删除？', {
+        layer.confirm('删除相册会同时删除该相册下的照片。<br>确认删除？', {
             title : ['警告！', 'font-size:18px; color:#CC6633;'],
             move : false,
             area : '400px'

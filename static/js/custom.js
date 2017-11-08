@@ -57,7 +57,7 @@ $(document).ready(function () {
         paginationSpeed: 400,
         singleItem: true,
         transitionStyle: "backSlide",
-        autoPlay: true
+        autoPlay: 8000
     });
     $("#photo-owl").owlCarousel({
         navigation: false, // Show next and prev buttons

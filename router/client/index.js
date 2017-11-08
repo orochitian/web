@@ -4,6 +4,7 @@ var storyCategory = require('../../model/storyCategory');
 var blogCategory = require('../../model/blogCategory');
 var workCategory = require('../../model/workCategory');
 var slider = require('../../model/slider');
+var mood = require('../../model/mood');
 
 router.use(function (req, res, next) {
     req.pageInfo = {};
@@ -26,6 +27,9 @@ router.get('/', function (req, res) {
         }),
         workCategory.find().then(function (info) {
             req.pageInfo.work = info;
+        }),
+        mood.find().then(function (info) {
+            req.pageInfo.mood = info;
         })
     ]).then(function () {
         res.render('index.html', req.pageInfo);
