@@ -8,7 +8,7 @@
 	<!-- VENDOR CSS -->
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css" rel="stylesheet">
+	<link href="/static/manage/vendor/linearicons/style.css" rel="stylesheet">
 
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="/static/manage/css/main.css">
@@ -75,7 +75,7 @@
 					<li><a href="/manage/mood" class="{%if title == '心情'%}active{%endif%}"><i class="lnr lnr-heart-pulse"></i> <span>心情管理</span></a></li>
 					<li><a href="/manage/photo" class="{%if categoryName.indexOf('相册') >= 0%}active{%endif%}"><i class="lnr lnr-picture"></i> <span>相册管理</span></a></li>
 					<li><a href="/manage/work" class="{%if categoryName.indexOf('工作') >= 0%}active{%endif%}"><i class="lnr lnr-keyboard"></i> <span>工作管理</span></a></li>
-					<li><a href="/manage/work" class="{%if title == ''%}active{%endif%}"><i class="lnr lnr-upload"></i> <span>上传资源管理</span></a></li>
+					<li><a href="/manage/uploadSource" class="{%if title.indexOf('上传') >= 0%}active{%endif%}"><i class="lnr lnr-upload"></i> <span>上传资源管理</span></a></li>
 					<!--<li>-->
 					<!--<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>-->
 					<!--<div id="subPages" class="collapse ">-->

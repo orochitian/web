@@ -19,7 +19,10 @@ router.use('/work', require('./manage/work'));
 //  心情
 router.use('/mood', require('./manage/mood'));
 
-//  心情
+//  相册
 router.use('/photo', require('./manage/photo'));
+
+//  上传资源管理
+router.use('/uploadSource', require('./manage/uploadSource'));
 
 module.exports = router;

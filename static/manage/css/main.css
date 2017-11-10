@@ -47,8 +47,10 @@ td {
 }
 /* bootstrap fileinput 预览图片宽度限制 */
 .file-preview-image {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* 重置样式结束 */
