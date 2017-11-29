@@ -28,8 +28,8 @@
 			{% for data in datas %}
 			<tr>
 				{% if category !== 'work' %}
-				<td title="{{data.title}}"><a href="/manage/{{title}}/{{category}}">{{data.title}}</a></td>
-				<td title="{{data.preview}}">{{data.preview}}</td>
+				<td title="{{data.title}}"><a href="/{{category}}/{{title}}/{{data._id}}" target="_blank">{{data.title}}</a></td>
+				<td class="text-left" title="{{data.preview}}">{{data.preview}}</td>
 				{% endif %}
 				<td>
 					{% if data.date %}

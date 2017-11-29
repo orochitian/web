@@ -1,0 +1,44 @@
+{% extends 'template.html' %}
+
+{% set title = categoryName %}
+
+{% block content %}
+<section id="mood" style="background-image: url({{slider.imgPath}});">
+    <div class="container">
+        <h2>{{slider.title}}</h2>
+        <hr class="light-sep">
+        <p>{{slider.describe}}</p>
+    </div>
+</section>
+
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            {% for item in article %}
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="item text-left">
+                    <h4><a href="/{{currentCategory}}/{{item.category}}/{{item._id}}">{{item.title}}</a></h4>
+                    <p>{{item.preview}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<div class="container" style="margin-bottom: 100px;">
+    <div class="col-sm-10 col-sm-offset-1 text-center">
+        <div class="col-sm-4">
+            {% if pageInfo.page != 1 %}
+            <a href="/{{currentCategory}}/{{categoryName}}?page={{pageInfo.page-1}}" class="btn-block"><span>上一页</span></a>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-4 col-sm-offset-4">
+            {% if pageInfo.page < pageInfo.pageNum %}
+            <a href="/{{currentCategory}}/{{categoryName}}?page={{pageInfo.page+1}}" class="btn-block"><span>下一页</span></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

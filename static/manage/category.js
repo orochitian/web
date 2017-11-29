@@ -2,7 +2,7 @@ $(function () {
     //  异步验证
     $.fn.remote = function (url) {
         var validOption = {
-            trigger : 'change',
+            // trigger : 'change',
             //  验证字段
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',

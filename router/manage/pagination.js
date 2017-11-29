@@ -16,7 +16,7 @@ var pagination = {
         count < 1 ? count = 1 : '';
         var pageNum = Math.ceil(count/limitNum);
         this.pageNum = Math.ceil(count/limitNum);
-        //  排除手动修改分页
+        //  非法修改分页，重置当前分页为1
         this.page < 1 ? this.page = 1 : '';
         this.page > pageNum ? this.page = pageNum : '';
 

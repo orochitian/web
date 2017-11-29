@@ -40,4 +40,17 @@ $(function () {
             }
         });
     });
+
+    $uploader.on('filebeforedelete', function() {
+        return new Promise(function(resolve, reject) {
+            layer.confirm('这是物理删除。<br>确认删除？', {
+                title : ['警告！', 'font-size:18px; color:#CC6633;'],
+                move : false,
+                area : '400px'
+            }, function () {
+                resolve();
+                layer.closeAll();
+            });
+        });
+    });
 });

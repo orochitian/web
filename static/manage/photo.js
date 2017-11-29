@@ -1,4 +1,21 @@
 $(function () {
+    $('#addCategory').bootstrapValidator({
+        //  验证字段
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: '标题不能为空。'
+                    }
+                }
+            }
+        }
+    });
     // 文件上传框
     var $uploader = $('#uploader');
     $uploader.fileinput({
@@ -25,18 +42,20 @@ $(function () {
         addCategory.find('[name="imgSize"]').val(data.response.size);
         addCategory.find('[name="imgHash"]').val(data.response.hash);
         setTimeout(function () {
-            addCategory.submit();
+            addCategory.data('bootstrapValidator').defaultSubmit();
         }, 500);
     });
     $('.btn-info:submit').on('click', function (e) {
         e.preventDefault();
-        $uploader.fileinput('upload');
+        var toUpload = $('#addCategory').data('bootstrapValidator').validateField('name').isValidField('name');
+        toUpload ? $uploader.fileinput('upload') : '';
     });
     //  关闭刷新整个模态框
-    $('#add-modal').on('hidden.bs.modal', function () {
+    $('#add-modal').on('hide.bs.modal', function () {
         var $this = $(this);
-        $this.find('[name="title"]').val('')
-        $this.find('[name="describe"]').val('')
+        $this.find('[name="name"]').val('')
+        $this.find('[name="describe"]').val('');
+        $('#addCategory').data('bootstrapValidator').resetForm();
         $this.find('#uploader').fileinput('unlock').fileinput('clear');
     });
     //  添加轮播

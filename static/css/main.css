@@ -217,7 +217,8 @@ Navigation Style
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus,
-.navbar-default .nav > li > a:active {
+.navbar-default .nav > li > a:active,
+.navbar-default .nav > li > a.active {
   color: #a3a3a3;
 }
 .navbar-default .social-media {
@@ -795,4 +796,31 @@ Media Queries Style
   #testimonials h5 {
     font-size: 18px;
   }
+}
+
+/* 相册固定高度，增加左右边距 */
+#photo-owl .item {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#photo-owl .item .img-responsive {
+  height: 400px;
+}
+
+/* 文章详情页面样式 */
+#article {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.preview-box {
+  border-left: 5px solid #eee;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: #a3a3a3;
+  font-style: italic;
+  line-height: 1.5em;
+}
+.historyBack {
+  margin-bottom: 100px;
 }

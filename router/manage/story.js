@@ -92,7 +92,7 @@ router.get('/:name', function (req, res) {
                     category : 'story',
                     categoryName : '故事'
                 });
-            });
+            }).sort('-created_at');
         } else {
             res.send('分类不存在，你说尴尬不尴尬');
         }

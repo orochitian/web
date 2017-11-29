@@ -1,35 +1,35 @@
 var router = require('express').Router();
-var storyCategory = require('../../model/storyCategory');
-var story = require('../../model/story');
+var blogCategory = require('../../model/blogCategory');
+var blog = require('../../model/blog');
 var slider = require('../../model/slider');
 var pagination = require('../manage/pagination');
 
 router.use(function (req, res, next) {
     req.pageInfo = {
-        currentCategory : 'story'
+        currentCategory : 'blog'
     };
     next();
 });
 
 router.get('/:category', function (req, res) {
-    storyCategory.findOne({name:req.params.category}, function (err, info) {
+    blogCategory.findOne({name:req.params.category}, function (err, info) {
         if( info ) {
             req.pageInfo.categoryName = req.params.category;
             Promise.all([
-                storyCategory.find({show:'是'}).sort('-created_at').then(function (info) {
+                blogCategory.find({show:'是'}).then(function (info) {
                     req.pageInfo.category = info;
                 }),
-                story.find({category:req.params.category}).then(function (info) {
-                    req.pageInfo.story = info;
+                blog.find({category:req.params.category}).then(function (info) {
+                    req.pageInfo.blog = info;
                 }),
-                slider.findOne({category:'story'}).then(function (info) {
+                slider.findOne({category:'blog'}).then(function (info) {
                     req.pageInfo.slider = info;
                 })
             ]).then(function () {
-                var paginationModel = pagination.model(story, req.query.page, 2, 6, req.pageInfo.story.length, {category:req.params.category});
-                paginationModel.sort('-created_at').then(function (story) {
+                var paginationModel = pagination.model(blog, req.query.page, 2, 6, req.pageInfo.blog.length, {category:req.params.category});
+                paginationModel.sort('-created_at').then(function (blog) {
                     req.pageInfo.pageInfo = pagination.pageInfo;
-                    req.pageInfo.article = story;
+                    req.pageInfo.article = blog;
                     res.render('list.html', req.pageInfo);
                 });
             });
@@ -40,17 +40,17 @@ router.get('/:category', function (req, res) {
 });
 
 router.get('/:category/:id', function (req, res) {
-    storyCategory.findOne({name:req.params.category}, function (err, info) {
+    blogCategory.findOne({name:req.params.category}, function (err, info) {
         if( info ) {
             req.pageInfo.categoryName = req.params.category;
             Promise.all([
-                storyCategory.find({show:'是'}).sort('-created_at').then(function (info) {
+                blogCategory.find({show:'是'}).then(function (info) {
                     req.pageInfo.category = info;
                 }),
-                story.findById(req.params.id).then(function (info) {
+                blog.findById(req.params.id).then(function (info) {
                     req.pageInfo.article = info;
                 }),
-                slider.findOne({category:'story'}).then(function (info) {
+                slider.findOne({category:'blog'}).then(function (info) {
                     req.pageInfo.slider = info;
                 })
             ]).then(function () {

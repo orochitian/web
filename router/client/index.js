@@ -4,6 +4,7 @@ var storyCategory = require('../../model/storyCategory');
 var blogCategory = require('../../model/blogCategory');
 var workCategory = require('../../model/workCategory');
 var slider = require('../../model/slider');
+var photoCategory = require('../../model/photoCategory');
 var mood = require('../../model/mood');
 
 router.use(function (req, res, next) {
@@ -19,16 +20,19 @@ router.get('/', function (req, res) {
         slider.find({category:'index'}).then(function (info) {
             req.pageInfo.slider = info;
         }),
-        storyCategory.find().then(function (info) {
+        storyCategory.find().sort('-created_at').then(function (info) {
             req.pageInfo.story = info;
         }),
         blogCategory.find().then(function (info) {
             req.pageInfo.blog = info;
         }),
-        workCategory.find().then(function (info) {
+        photoCategory.find().then(function (info) {
+            req.pageInfo.photo = info;
+        }),
+        workCategory.find().sort('-created_at').then(function (info) {
             req.pageInfo.work = info;
         }),
-        mood.find().then(function (info) {
+        mood.find().sort('-created_at').then(function (info) {
             req.pageInfo.mood = info;
         })
     ]).then(function () {

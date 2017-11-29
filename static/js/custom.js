@@ -63,6 +63,7 @@ $(document).ready(function () {
         navigation: false, // Show next and prev buttons
         paginationSpeed: 400,
         items: 3,
+        margin: 50,
         transitionStyle: "backSlide",
         autoPlay: true
     });
@@ -78,4 +79,4 @@ $(document).ready(function () {
     $(window).load(function () {
         preloader.remove();
     });
-})
+});

@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>故事</title>
+    <title>{{categoryName}}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -41,7 +41,7 @@
     <!-- Header
 	============================================= -->
     <section class="main-header">
-        <nav class="navbar navbar-default navbar-fixed-top top-nav-collapse">
+        <nav class="navbar-default top-nav-collapse">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -51,25 +51,20 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!--<a class="navbar-brand" href="#"><img src="/static/images/logo/logo.png" class="img-responsive" alt="logo"></a>-->
-                    <a class="navbar-brand" href="/" style="font-size: 30px; font-weight: bold; color: #fff; line-height: 60px">Rya Lee</a>
+                    <a class="navbar-brand" href="/" style="font-size: 30px; font-weight: bold; color: #fff; line-height: 40px">Rya Lee</a>
                 </div>
                 <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
                     <div class="col-md-8 col-xs-12 nav-wrap">
                         <ul class="nav navbar-nav">
-                            <li><a href="#story" class="page-scroll">故事</a></li>
-                            <li><a href="#blog" class="page-scroll">博客</a></li>
-                            <li><a href="#mood" class="page-scroll">心情</a></li>
-                            <li><a href="#photo" class="page-scroll">相册</a></li>
-                            <li><a href="#work" class="page-scroll">工作</a></li>
-                            <li><a href="#contact" class="page-scroll">登录</a></li>
-                            <li><a href="#owl-hero" class="page-scroll">回到顶部 ↑</a></li>
-                        </ul>
-                    </div>
-                    <div class="social-media hidden-sm hidden-xs">
-                        <ul class="nav navbar-nav">
-                            <li><a href="javascript:;"><i class="fa fa-weixin"></i></a></li>
-                            <li><a href="javascript:;"><i class="fa fa-qq"></i></a></li>
-                            <li><a href="javascript:;"><i class="fa fa-weibo"></i></a></li>
+                            {% for item in category %}
+                            <li>
+                                {% if item.name == categoryName %}
+                                <a href="javascript:;" class="page-scroll active">{{item.name}}({{item.childNum}})</a>
+                                {% else %}
+                                <a href="/{{currentCategory}}/{{item.name}}" class="page-scroll">{{item.name}}({{item.childNum}})</a>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -77,24 +72,21 @@
         </nav>
     </section>
 
-    <section id="category">
-        <div style="height: 150px; width: 100%"></div>
-        <div class="col-sm-10 col-sm-offset-1">
-            {% for item in category %}
-            <div class="col-sm-4 text-center">
-                <a href="#" class="btn-block col-md-4">{{item.name}}</a>
-            </div>
-            {% endfor %}
+    <section id="mood" style="background-image: url({{slider.imgPath}});">
+        <div class="container">
+            <h2>{{slider.title}}</h2>
+            <hr class="light-sep">
+            <p>{{slider.describe}}</p>
         </div>
     </section>
 
     <section id="blog">
         <div class="container">
             <div class="row">
-                {% for item in story %}
+                {% for item in article %}
                 <div class="col-sm-10 col-sm-offset-1">
                     <div class="item text-left">
-                        <h4><a href="#">{{item.title}}</a></h4>
+                        <h4><a href="/{{currentCategory}}/{{item.category}}/{{item._id}}">{{item.title}}</a></h4>
                         <p>{{item.preview}}</p>
                     </div>
                 </div>
@@ -103,6 +95,21 @@
         </div>
     </section>
 
+    <div class="container" style="margin-bottom: 100px;">
+        <div class="col-sm-10 col-sm-offset-1 text-center">
+            <div class="col-sm-4">
+                {% if pageInfo.page != 1 %}
+                <a href="/{{currentCategory}}/{{categoryName}}?page={{pageInfo.page-1}}" class="btn-block"><span>上一页</span></a>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-4 col-sm-offset-4">
+                {% if pageInfo.page < pageInfo.pageNum %}
+                <a href="/{{currentCategory}}/{{categoryName}}?page={{pageInfo.page+1}}" class="btn-block"><span>下一页</span></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
     <!-- Footer
 	============================================= -->

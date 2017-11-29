@@ -21,7 +21,7 @@
 			<tbody>
 			{% for item in mood %}
 			<tr>
-				<td>{{item.text}}</td>
+				<td class="text-left" title="{{item.text}}">{{item.text}}</td>
 				<td>
 					<button type="button" class="btn btn-info mood-edit" mid="{{item._id}}" text="{{item.text}}">编辑</button>&nbsp;&nbsp;
 					<a href="/manage/mood/delete/{{item._id}}" class="btn btn-danger delete-btn">删除</a>
