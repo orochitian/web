@@ -1,21 +1,37 @@
 $(function () {
-    $('#addCategory').bootstrapValidator({
-        //  验证字段
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            name: {
-                validators: {
-                    notEmpty: {
-                        message: '标题不能为空。'
+    $.fn.remote = function (url) {
+        var validOption = {
+            // trigger : 'change',
+            //  验证字段
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: '分类名称不能为空。'
+                        },
+                        remote: {
+                            url: url,
+                            message: "分类已存在。",
+                            type: "post",
+                            dataType: 'json',
+                            data : {
+                                sid : function () {
+                                    return $('#edit-modal').find('[name="id"]').val()
+                                }
+                            },
+                            delay: 500,
+                        }
                     }
                 }
             }
         }
-    });
+        return this.bootstrapValidator(validOption);
+    }
     // 文件上传框
     var $uploader = $('#uploader');
     $uploader.fileinput({
@@ -58,11 +74,26 @@ $(function () {
         $('#addCategory').data('bootstrapValidator').resetForm();
         $this.find('#uploader').fileinput('unlock').fileinput('clear');
     });
-    //  添加轮播
+    //  添加相册
     $('.add-btn').click(function () {
         $('#add-modal').modal({
             backdrop : 'static'
         });
+        $('#addCategory').remote('/manage/photo/addCategoryExists');
+    });
+    //  编辑相册
+    $('.edit-btn').click(function () {
+        var $modal = $('#edit-modal');
+        var $this = $(this);
+        $modal.find('[name="name"]').val( $this.attr('name') );
+        $modal.find('[name="describe"]').val( $this.attr('describe') );
+        $modal.find('[name="password"]').val( $this.attr('password') );
+        $modal.find('[name="id"]').val( $this.attr('id') );
+        $modal.find('[name="show"]').val( $this.attr('show') );
+        $modal.modal({
+            backdrop : 'static'
+        });
+        $('#editCategory').remote('/manage/photo/editCategoryExists');
     });
     $('.delete-btn').click(function () {
         var href = $(this).attr('href');

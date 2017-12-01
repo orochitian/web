@@ -41,7 +41,22 @@ router.post('/category/add', function (req, res) {
     });
 });
 
-//  编辑相册
+//  异步分类验证
+router.post('/addCategoryExists', function (req, res) {
+    photoCategory.findOne({name: req.body.name}, function (err, info) {
+        info ? res.json({valid: false}) : res.json({valid: true});
+    });
+});
+//  编辑分类时验证是否存在  要排除自身
+router.post('/editCategoryExists', function (req, res) {
+    photoCategory.findOne({name: req.body.name}, function (err, info) {
+        if( info && info._id != req.body.sid ) {
+            res.json({valid: false});
+        } else {
+            res.json({valid: true});
+        }
+    });
+});
 
 //  删除相册
 router.get('/delete/:id/:category', function (req, res) {

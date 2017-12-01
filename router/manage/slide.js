@@ -67,6 +67,18 @@ router.get('/blog', function (req, res) {
     });
 });
 
+router.get('/work', function (req, res) {
+    slider.find({category:'work'}, function (err, sliders) {
+        render(res, {
+            title : '工作',
+            link : '/manage/work',
+            category : 'work',
+            categoryName : '工作',
+            sliders : sliders
+        });
+    });
+});
+
 //  上传
 router.post('/upload', function (req, res, next) {
     fileUpload(req, res, {

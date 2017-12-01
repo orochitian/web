@@ -200,26 +200,13 @@
             <hr class="light-sep">
             <p>分类</p>
             <div class="row wow fadeInUp" data-wow-delay=".3s">
+                {% for item in work %}
                 <div class="col-lg-3">
-                    <span class="fa fa-edit"></span>
-                    <h2 class="number timer">367</h2>
-                    <h4><a href="/blog">博客</a></h4>
+                    <!--<span class="fa fa-edit"></span>-->
+                    <h2 class="number timer">共{{item.childNum}}篇</h2>
+                    <h4><a href="/work/{{item.name}}">{{item.name}}</a></h4>
                 </div>
-                <div class="col-lg-3">
-                    <span class="fa fa-folder-open-o"></span>
-                    <h2 class="number timer">150</h2>
-                    <h4><a href="#">工作</a></h4>
-                </div>
-                <div class="col-lg-3">
-                    <span class="fa fa-pencil"></span>
-                    <h2 class="number timer">121</h2>
-                    <h4><a href="#">故事</a></h4>
-                </div>
-                <div class="col-lg-3">
-                    <span class="fa fa-photo"></span>
-                    <h2 class="number timer">10000</h2>
-                    <h4><a href="#">相册</a></h4>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

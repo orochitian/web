@@ -2,7 +2,12 @@ var mongoose = require('mongoose');
 var work_schema = new mongoose.Schema({
     category : String,
     content : String,
-    date : String
+    date : String,
+    title : String,
+    preview : {
+        type : String,
+        default : '工作日志，流水账'
+    }
 }, {
     timestamps : {
         createdAt : 'created_at',

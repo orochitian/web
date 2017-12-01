@@ -33,13 +33,13 @@ app.use('*', function (req, res) {
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/web', {useMongoClient : true}, function (err) {
     if( err ) {
-        console.log('数据库连接失败.');
+        console.log('Database start failed!');
     } else {
         app.listen('8080', function (err) {
             if( err ) {
-                console.log('服务器启动失败.');
+                console.log('Server start failed!');
             } else {
-                console.log('服务器运行中.')
+                console.log('Server is running...')
             }
         });
     }

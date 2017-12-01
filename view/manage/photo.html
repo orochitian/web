@@ -37,7 +37,7 @@
 				<td><span class="text-success">{{photo.childNum}}</span></td>
 				<td><span class="text-primary">{{photo.show}}</span></td>
 				<td>
-					<a href="javascript:;" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
+					<a href="javascript:;" id="{{photo._id}}" name="{{photo.name}}" describe="{{photo.describe}}" show="{{photo.show}}" class="btn btn-info edit-btn">编辑</a>&nbsp;&nbsp;
 					<a href="/manage/photo/delete/{{photo._id}}/{{photo.name}}" class="btn btn-danger delete-btn">删除</a>
 				</td>
 			</tr>

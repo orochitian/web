@@ -40,6 +40,7 @@ $(function () {
             $('#add-modal').modal({
                 backdrop : 'static'
             });
+            console.log(this);
             $('#addCategory').remote(this);
             return false;
         });

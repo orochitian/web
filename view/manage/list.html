@@ -16,10 +16,8 @@
 		<table class="table table-bordered table-hover text-center">
 			<thead>
 			<tr class="info">
-				{% if category !== 'work' %}
 				<td>标题</td>
 				<td>概述</td>
-				{% endif %}
 				<td width="200">日期</td>
 				<td width="220">编辑</td>
 			</tr>
@@ -27,10 +25,8 @@
 			<tbody>
 			{% for data in datas %}
 			<tr>
-				{% if category !== 'work' %}
 				<td title="{{data.title}}"><a href="/{{category}}/{{title}}/{{data._id}}" target="_blank">{{data.title}}</a></td>
-				<td class="text-left" title="{{data.preview}}">{{data.preview}}</td>
-				{% endif %}
+				<td title="{{data.preview}}">{{data.preview}}</td>
 				<td>
 					{% if data.date %}
 					{{data.date}}

@@ -121,7 +121,8 @@ router.post('/:name/add', function (req, res) {
             work.create({
                 category : req.params.name,
                 content : req.body.content,
-                date : req.body.date
+                date : req.body.date,
+                title : req.body.date
             }, function () {
                 res.redirect('/manage/work/' + req.params.name);
             });
@@ -143,10 +144,11 @@ router.get('/:name/edit/:sid', function (req, res) {
                             categories : categories,
                             category : work.category,
                             content : work.content,
-                            id: work._id,
+                            id : work._id,
                             parent : 'work',
                             categoryName : '工作',
-                            date : work.date
+                            date : work.date,
+                            title : work.title
                         });
                     });
                 } else {
