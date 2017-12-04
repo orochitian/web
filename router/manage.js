@@ -1,4 +1,13 @@
 var router = require('express').Router();
+var session = require('express-session');
+
+router.use(function (req, res, next) {
+    if( req.session.user ) {
+        next();
+    } else {
+        res.send('没登录进不去，你说尴尬不尴尬？');
+    }
+});
 
 //  轮播
 router.use('/slide', require('./manage/slide'));

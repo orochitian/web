@@ -103,9 +103,9 @@
 	============================================= -->
     <section id="story">
         <div class="container">
-            <h2>故事</h2>
+            <h2>Story</h2>
             <hr class="light-sep">
-            <p>社会我睿哥，人狠话不多。兄弟三百多，全是自行车。</p>
+            <p>An end of a story is the start of another one</p>
             <div class="story-box">
                 <div class="row wow fadeInUp" data-wow-delay=".3s">
                     {% for item in story %}
@@ -127,9 +127,9 @@
 	============================================= -->
     <section id="blog">
         <div class="container">
-            <h2>博客</h2>
+            <h2>Blog</h2>
             <hr class="sep">
-            <p>技术分类</p>
+            <p>Category</p>
             <div class="row wow fadeInUp" data-wow-delay=".3s">
                 {% for item in blog %}
                 {% if item.show === '是' %}
@@ -149,9 +149,9 @@
      ============================================= -->
     <section id="mood">
         <div class="container">
-            <h2>心情</h2>
+            <h2>Mood</h2>
             <hr class="light-sep">
-            <p>我无心，却伤怀。想入梦，再重来。</p>
+            <p>Everything will be fine</p>
             <div id="owl-testi" class="owl-carousel owl-theme">
                 {% for item in mood %}
                 <div class="item">
@@ -173,9 +173,9 @@
 	============================================= -->
     <section id="photo">
         <div class="container">
-            <h2>相册</h2>
+            <h2>Photograph</h2>
             <hr class="sep">
-            <p>分类</p>
+            <p>Category</p>
             <div class="row wow fadeInUp" data-wow-delay=".3s">
                 <div id="photo-owl" class="owl-carousel owl-theme">
                     {% for item in photo %}
@@ -196,14 +196,14 @@
 	============================================= -->
     <section id="work">
         <div class="container">
-            <h2>工作总结</h2>
+            <h2>Work Log</h2>
             <hr class="light-sep">
-            <p>分类</p>
+            <p>Category</p>
             <div class="row wow fadeInUp" data-wow-delay=".3s">
                 {% for item in work %}
                 <div class="col-lg-3">
                     <!--<span class="fa fa-edit"></span>-->
-                    <h2 class="number timer">共{{item.childNum}}篇</h2>
+                    <h2 class="number timer">{{item.childNum}}</h2>
                     <h4><a href="/work/{{item.name}}">{{item.name}}</a></h4>
                 </div>
                 {% endfor %}
@@ -215,18 +215,18 @@
 	============================================= -->
     <section id="contact">
         <div class="container">
-            <h2>登录</h2>
+            <h2>Login</h2>
             <hr class="sep">
-            <p>管理员登录</p>
+            <p>Administrator login</p>
             <div class="col-md-6 col-md-offset-3 wow fadeInUp" data-wow-delay=".3s">
-                <form action="/login" method="post" target="_blank">
+                <form action="/login" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="username" placeholder="username">
+                        <input type="text" class="form-control" name="username" placeholder="username">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="password" placeholder="password">
+                        <input type="password" class="form-control" name="password" placeholder="password">
                     </div>
-                    <button type="submit" class="btn-block">Send</button>
+                    <button type="submit" class="btn-block">Login</button>
                 </form>
             </div>
         </div>

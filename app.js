@@ -1,8 +1,15 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var session = require('express-session');
 var app = express();
 
 app.use( require('body-parser').urlencoded({extended : true}) );
+
+app.use(session({
+    secret : 'ryan lee',
+    resave : true,
+    saveUninitialized : true
+}));
 
 app.set('view engine', 'html');
 
