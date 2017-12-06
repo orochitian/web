@@ -41,6 +41,37 @@ router.post('/category/add', function (req, res) {
     });
 });
 
+//  编辑分类
+router.post('/editCategory', function (req, res) {
+    photoCategory.findById(req.body.id, function (err, info) {
+        if( info && info._id != req.body.id ) {
+            res.send('分类已存在，你说尴尬不尴尬');
+        } else {
+            photo.update({category:info.name}, {
+                category : req.body.name
+            }, {multi:true}, function () {});
+            photoCategory.update({_id : req.body.id}, {
+                name : req.body.name,
+                describe : req.body.describe,
+                show : req.body.show,
+                imgPath : req.body.imgPath,
+                imgName : req.body.imgName,
+                imgSize : req.body.imgSize,
+                imgHash : req.body.imgHash
+            }, function (err, info) {
+                res.redirect('/manage/photo');
+            });
+        }
+    });
+});
+
+//  获取相册封面
+router.post('/edit/getImg', function (req, res) {
+    photoCategory.findById(req.body.sid, function (err, info) {
+        res.json(info);
+    });
+});
+
 //  异步分类验证
 router.post('/addCategoryExists', function (req, res) {
     photoCategory.findOne({name: req.body.name}, function (err, info) {

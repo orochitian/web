@@ -11,6 +11,10 @@ router.use(function (req, res, next) {
     req.pageInfo = {};
     next();
 });
+//  disclaimer
+router.get('/disclaimer', function (req, res) {
+    res.render('disclaimer.html');
+});
 
 router.get('/', function (req, res) {
     Promise.all([

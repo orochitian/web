@@ -41,7 +41,7 @@ router.post('/editCategory', function (req, res) {
         if( info && info._id != req.body.id ) {
             res.send('分类已存在，你说尴尬不尴尬');
         } else {
-            storyCategory.findOne({_id : req.body.id}, function (err, category) {
+            storyCategory.findById(req.body.id, function (err, category) {
                 story.update({category:category.name}, {category:req.body.name}, {multi:true}, function () {});
                 storyCategory.update({_id : req.body.id}, {
                     name : req.body.name,

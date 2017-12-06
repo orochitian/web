@@ -14,7 +14,6 @@
 	</div>
 	<div class="panel-body">
 		<p>
-			<a href="" class="btn btn-info">轮播图管理</a>&nbsp;&nbsp;
 			<a href="#" class="btn btn-info add-btn">添加相册</a>
 		</p>
 		<table class="table table-bordered table-hover text-center">
@@ -118,11 +117,11 @@
 <div id="edit-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form id="editCategory" action="" method="post">
+			<form id="editCategory" action="/manage/photo/editCategory" method="post">
 				<input type="hidden" name="id" value="">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-					<h4 class="modal-title">修改故事分类</h4>
+					<h4 class="modal-title">更新相册</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
@@ -140,9 +139,18 @@
 							<option value="否">否</option>
 						</select>
 					</div>
+					<div class="form-group">
+						<div class="file-loading">
+							<input id="uploader1" name="image" type="file">
+						</div>
+					</div>
 				</div>
+				<input type="hidden" name="imgPath">
+				<input type="hidden" name="imgName">
+				<input type="hidden" name="imgSize">
+				<input type="hidden" name="imgHash">
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-info">修改</button>
+					<button type="submit" class="btn btn-info">更新</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 				</div>
 			</form>

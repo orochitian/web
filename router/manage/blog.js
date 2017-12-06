@@ -37,10 +37,13 @@ router.post('/addCategory', function (req, res) {
 
 //  编辑分类
 router.post('/editCategory', function (req, res) {
-    blogCategory.findOne({name : req.body.name}, function (err, info) {
+    blogCategory.findById(req.body.id, function (err, info) {
         if( info && info._id != req.body.id ) {
             res.send('分类已存在，你说尴尬不尴尬');
         } else {
+            blog.update({category:info.name}, {
+                category : req.body.name
+            }, {multi:true}, function () {});
             blogCategory.update({_id : req.body.id}, {
                 name : req.body.name,
                 describe : req.body.describe,

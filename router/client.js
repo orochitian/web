@@ -1,6 +1,5 @@
 var router = require('express').Router();
 var admin = require('../admin');
-var session = require('express-session');
 
 //  admin login
 router.post('/login', function (req, res) {
