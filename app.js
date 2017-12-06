@@ -25,10 +25,10 @@ app.use('/uploadSource', express.static(__dirname + '/uploadSource'));
 
 app.use('/ueditor', require('./router/ueditor'));
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
-});
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     next();
+// });
 
 app.use('/', require('./router/client'));
 app.use('/manage', require('./router/manage'));

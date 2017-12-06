@@ -38,8 +38,9 @@ router.post('/delete', function (req, res) {
         if( err ) {
             console.log(err);
         } else {
-            fs.unlink(filePath);
-            uploadSource.findByIdAndRemove(req.body.id, function (){});
+            fs.unlink(filePath, function () {
+                uploadSource.findByIdAndRemove(req.body.id, function (){});
+            });
         }
     });
     res.json({});

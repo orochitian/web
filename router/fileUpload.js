@@ -16,9 +16,10 @@ function fileUpload (req, res, options) {
 
     form.on('file', function (name, file) {
         if( file.size > maxSize ) {
-            fs.unlink(file.path);
-            res.json({
-                error : '文件大小超过限制，最大' + parseInt(maxSize/1024) + 'kb'
+            fs.unlink(file.path, function () {
+                res.json({
+                    error : '文件大小超过限制，最大' + parseInt(maxSize/1024) + 'kb'
+                });
             });
             return;
         }
@@ -31,9 +32,10 @@ function fileUpload (req, res, options) {
         }
         uploadSource.findOne({hash:file.hash}, function (err, data) {
             if( data ) {
-                fs.unlink(file.path);
-                sourceData.path = data.path;
-                res.json(sourceData);
+                fs.unlink(file.path, function () {
+                    sourceData.path = data.path;
+                    res.json(sourceData);
+                });
             } else {
                 uploadSource.create(sourceData);
                 res.json(sourceData);

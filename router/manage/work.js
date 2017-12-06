@@ -176,7 +176,8 @@ router.post('/:name/edit/:sid', function (req, res) {
         work.findOneAndUpdate({_id:req.params.sid}, {
             category : req.body.category,
             content : req.body.content,
-            date : req.body.date
+            date : req.body.date,
+            title : req.body.date
         }, function (err, work) {
             res.redirect('/manage/work/' + req.params.name);
         });
