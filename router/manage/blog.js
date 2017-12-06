@@ -86,11 +86,15 @@ router.get('/:name', function (req, res) {
     blogCategory.findOne({name:req.params.name}, function (err, info) {
         if( info ) {
             blog.find({category:req.params.name}, function (err, stories) {
-                res.render('manage/list.html', {
-                    datas : stories,
-                    title : req.params.name,
-                    category : 'blog',
-                    categoryName : '博客'
+                var paginationModel = pagination.model(blog, req.query.page, 2, 6, stories.length, {category:req.params.name});
+                paginationModel.sort('-created_at').then(function (blog) {
+                    res.render('manage/list.html', {
+                        datas : blog,
+                        title : req.params.name,
+                        category : 'blog',
+                        categoryName : '博客',
+                        pageInfo : pagination.pageInfo
+                    });
                 });
             });
         } else {

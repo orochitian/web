@@ -87,11 +87,15 @@ router.get('/:name', function (req, res) {
     workCategory.findOne({name:req.params.name}, function (err, info) {
         if( info ) {
             work.find({category:req.params.name}, function (err, stories) {
-                res.render('manage/list.html', {
-                    datas : stories,
-                    title : req.params.name,
-                    category : 'work',
-                    categoryName : '工作'
+                var paginationModel = pagination.model(work, req.query.page, 2, 6, stories.length, {category:req.params.name});
+                paginationModel.sort('-created_at').then(function (work) {
+                    res.render('manage/list.html', {
+                        datas : work,
+                        title : req.params.name,
+                        category : 'work',
+                        categoryName : '工作',
+                        pageInfo : pagination.pageInfo
+                    });
                 });
             });
         } else {

@@ -86,13 +86,17 @@ router.get('/:name', function (req, res) {
     storyCategory.findOne({name:req.params.name}, function (err, info) {
         if( info ) {
             story.find({category:req.params.name}, function (err, stories) {
-                res.render('manage/list.html', {
-                    datas : stories,
-                    title : req.params.name,
-                    category : 'story',
-                    categoryName : '故事'
+                var paginationModel = pagination.model(story, req.query.page, 2, 6, stories.length, {category:req.params.name});
+                paginationModel.sort('-created_at').then(function (story) {
+                    res.render('manage/list.html', {
+                        datas : story,
+                        title : req.params.name,
+                        category : 'story',
+                        categoryName : '故事',
+                        pageInfo : pagination.pageInfo
+                    });
                 });
-            }).sort('-created_at');
+            });
         } else {
             res.send('分类不存在，你说尴尬不尴尬');
         }
